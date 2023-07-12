@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "truffle-hdwallet-provider-klaytn": "^1.4.2"
+  }
+}
