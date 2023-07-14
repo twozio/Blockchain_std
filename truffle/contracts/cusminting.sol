@@ -47,7 +47,7 @@ contract cusminting is ERC721Enumerable, Ownable{
 
         // _tokenId 에 따라 metadata의 Rank와 Type을 랜덤하게 생성하여 TokenDatas 상태변수에 저장
         TokenData memory random = getRandomTokenData(msg.sender, tokenId);  // 함수 실행 종료시 메모리 데이터 날림
-        TokenDatas[tokenid] = random;
+        TokenDatas[tokenId] = random;
 
         tokenCount[TokenDatas[tokenId].Rank - 1][TokenDatas[tokenId].Type - 1] += 1;
 
@@ -59,7 +59,7 @@ contract cusminting is ERC721Enumerable, Ownable{
 
     }
 
-    function tokenURI(uint tokenId) public override view returns (string memory) {
+    function tokenURI(uint _tokenId) public override view returns (string memory) {
 
         // if metadataURI : http://localhost:3000/metadata
         // return : http://localhost:3000/metadata/1/4.json
