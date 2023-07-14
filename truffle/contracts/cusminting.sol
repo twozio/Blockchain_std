@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.15;
 
-import "node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
-import "node_modules/@openzeppelin/contracts/access/Ownable.sol";
+import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
-import "node_modules/@openzeppelin/contracts/utils/Strings.sol";
+import "../node_modules/@openzeppelin/contracts/utils/Strings.sol";
 
 
 contract cusminting is ERC721Enumerable, Ownable{
@@ -14,7 +14,7 @@ contract cusminting is ERC721Enumerable, Ownable{
     // NFT 발행량을 제한하고 싶은 경우
     // Solidity 상수 선언 constant
 
-    uint public mint_price = 1 ether;
+    // uint public mint_price = 1 ;
     // 연산으로 양을 표현하게 될 경우 가스비 소모
     // Solidity 에서는 1 ether 라고 표현하면 알아서 10**18 로 표현
 
@@ -36,11 +36,11 @@ contract cusminting is ERC721Enumerable, Ownable{
     uint[4][4] public tokenCount;
     // 사용자에게 NFT 발행 상황을 보여주기 위한 용도의 상태변수
 
-    function mintToken() public payable {
+    function mintToken() public {
         // mintToken() 을 실행할 때 이더를 지급하게끔 함. CA에게 이더를 지급해서 NFT를 사는 개념.
 
-        require(msg.value >= mint_price);
-        require(MAX_TOKEN_COUNT > ERC721Enumerable.totalSupply());
+        // require(msg.value >= mint_price);
+        // require(MAX_TOKEN_COUNT > ERC721Enumerable.totalSupply());
 
         uint tokenId = ERC721Enumerable.totalSupply() + 1;
         // 총 발행량 + 1 로 tokenId 값 형성
@@ -52,7 +52,7 @@ contract cusminting is ERC721Enumerable, Ownable{
         tokenCount[TokenDatas[tokenId].Rank - 1][TokenDatas[tokenId].Type - 1] += 1;
 
         // CA -> 컨트랙트 배포자 계정으로 지급받은 이더 전송
-        payable(Ownable.owner()).transfer(msg.value);
+        // payable(Ownable.owner()).transfer(msg.value);
 
         // mintToken() 을 호출한 계정에게 NFT 발행
         _mint(msg.sender, tokenId);

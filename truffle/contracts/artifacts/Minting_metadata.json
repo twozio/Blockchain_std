@@ -150,6 +150,32 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "burn",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "burningsea",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
 						"name": "tokenId",
 						"type": "uint256"
 					}
@@ -441,11 +467,11 @@
 	},
 	"sources": {
 		"contracts/Minting.sol": {
-			"keccak256": "0x415e2d4e899ab2118f106966fe65ca5d09a550a3b7f3c2a2adf0a9f6a9ea6f92",
+			"keccak256": "0x1dd9dd41f320aad97fd9e21fc247e49e9d39a3c406f8d6402535e3d22c035d4d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d176780b0357f132d67ceeecfc94c06ce43c968c84808deb4677a6a70e353f6a",
-				"dweb:/ipfs/QmQmToNiczCfty2FmkbNC1cY8A2JJpbzWiGtJGuWQSieUu"
+				"bzz-raw://08b7669a90bef8bf574ceed455cc6ac6c9e97cd6c30e60e8a5079c43e585b674",
+				"dweb:/ipfs/Qme3NUz7YbaJaLwwHHhBvACT4PBTRKp28SVzAMu8oHN1fv"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {

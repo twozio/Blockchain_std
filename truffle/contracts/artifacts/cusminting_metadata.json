@@ -305,20 +305,7 @@
 				"inputs": [],
 				"name": "mintToken",
 				"outputs": [],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "mint_price",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -717,11 +704,11 @@
 	},
 	"sources": {
 		"contracts/cusminting.sol": {
-			"keccak256": "0x09f2e33abd9a8729000bcc50d8dea616ab73ade2c9ea1198e43a75f973a6da66",
+			"keccak256": "0x1d81b286d9b0ab789fe74d104c49bf48297ca0ec93f9a9925936ddda9477b9b4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3f7f371ce67346cef6dbc8a2602d229770e7050ddd3539b44f65f695d52e4afe",
-				"dweb:/ipfs/QmduyJX6m2tGmkQCgMbwGSdEgixz9WsT4CZjGfqjHigrki"
+				"bzz-raw://3659876669c888b269a2dfde92925e3e276b221096a6d44bbff110bdd9d48a3f",
+				"dweb:/ipfs/QmcpzDFNvn95AVVWsCJBrVES7AHsh4g2ZgsbV7qTAHhwy6"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/access/Ownable.sol": {

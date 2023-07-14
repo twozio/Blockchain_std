@@ -44,7 +44,7 @@
 // require('dotenv').config();
 // const { MNEMONIC, PROJECT_ID } = process.env;
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 module.exports = {
   /**
@@ -69,6 +69,14 @@ module.exports = {
     //  port: 8545,            // Standard Ethereum port (default: none)
     //  network_id: "*",       // Any network (default: none)
     // },
+    baobab: {
+      provider: () => {
+        return new HDWalletProvider("ab848d2762863ed7aba465c52a8c0c0b23a7c882c933f90372f249c36f6972a7", "https://public-en-baobab.klaytn.net");
+      },
+      network_id: '1001', //Klaytn baobab testnet's network id
+      gas: '200000000',
+      gasPrice: null
+    },
     //
     // An additional network, but with some advanced options…
     // advanced: {
