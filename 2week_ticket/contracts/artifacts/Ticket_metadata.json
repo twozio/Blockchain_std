@@ -319,19 +319,19 @@
 						"type": "uint256"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "uint32",
 						"name": "startTime",
-						"type": "uint256"
+						"type": "uint32"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "uint32",
 						"name": "endTime",
-						"type": "uint256"
+						"type": "uint32"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "uint8",
 						"name": "uses",
-						"type": "uint256"
+						"type": "uint8"
 					},
 					{
 						"internalType": "uint256",
@@ -394,6 +394,25 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "pendingWithdrawals",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -662,7 +681,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/TicketExample.sol": "Ticket"
+			"2week_ticket/contracts/TicketExample.sol": "Ticket"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -676,6 +695,14 @@
 		"remappings": []
 	},
 	"sources": {
+		"2week_ticket/contracts/TicketExample.sol": {
+			"keccak256": "0x9d1e87ce6643b92c9a2d1777f5b13ae9edfaac3721dece9073d1bb612bc20dbd",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c6b59e386cf0bc21f24c0b8a7fd19fe513a3dd83a4725f759c772c4c050751a8",
+				"dweb:/ipfs/QmRrFdpiZjJNURBzxooRpcVbNhaTnrVECsfsHwzW6i1YdS"
+			]
+		},
 		"@openzeppelin/contracts/access/Ownable.sol": {
 			"keccak256": "0xba43b97fba0d32eb4254f6a5a297b39a19a247082a02d6e69349e071e2946218",
 			"license": "MIT",
@@ -810,14 +837,6 @@
 			"urls": [
 				"bzz-raw://c50fcc459e49a9858b6d8ad5f911295cb7c9ab57567845a250bf0153f84a95c7",
 				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
-			]
-		},
-		"contracts/TicketExample.sol": {
-			"keccak256": "0xdbb0fb0b5b8d68c506727c17427273528b14f05a34994ac3324829f17b74cb87",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://a5ddb07e7ba27a22ce68dd7a4c0922b172206ad27952f7da23ba1496e8ba6a48",
-				"dweb:/ipfs/QmU7FGbFF2Z8Uk1FzmnzDhv6tqpNfQ8wE7kH7ERB7RPGBr"
 			]
 		}
 	},
