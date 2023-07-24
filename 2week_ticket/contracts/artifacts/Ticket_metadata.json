@@ -681,7 +681,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"2week_ticket/contracts/TicketExample.sol": "Ticket"
+			"2week_ticket/contracts/Ticket.sol": "Ticket"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -695,12 +695,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"2week_ticket/contracts/TicketExample.sol": {
-			"keccak256": "0x9d1e87ce6643b92c9a2d1777f5b13ae9edfaac3721dece9073d1bb612bc20dbd",
+		"2week_ticket/contracts/Ticket.sol": {
+			"keccak256": "0x82206ebde4cf784e64a902133bf058c7872c53fec4a5cb266deefec03db05dd2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c6b59e386cf0bc21f24c0b8a7fd19fe513a3dd83a4725f759c772c4c050751a8",
-				"dweb:/ipfs/QmRrFdpiZjJNURBzxooRpcVbNhaTnrVECsfsHwzW6i1YdS"
+				"bzz-raw://fde8e9c48568533e5619241cc9b0fbdaf4084b4531fb53a3ac0c9d5b50c7b296",
+				"dweb:/ipfs/QmYt8PRvTfhoB6gG48S15qmFju9uWAjSsvC2o5UUipH4C6"
 			]
 		},
 		"@openzeppelin/contracts/access/Ownable.sol": {
@@ -821,14 +821,6 @@
 			"urls": [
 				"bzz-raw://cc8841b3cd48ad125e2f46323c8bad3aa0e88e399ec62acb9e57efa7e7c8058c",
 				"dweb:/ipfs/QmSqE4mXHA2BXW58deDbXE8MTcsL5JSKNDbm23sVQxRLPS"
-			]
-		},
-		"@openzeppelin/contracts/utils/math/SafeMath.sol": {
-			"keccak256": "0x58b21219689909c4f8339af00813760337f7e2e7f169a97fe49e2896dcfb3b9a",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://ef8e012e946dec20e59f2d4446f4b44bb098f3fa8bac103b1b5112fff777447b",
-				"dweb:/ipfs/QmVTooKWcLkJ9W68yNX4MgdrbAKiAXwuRN9A7f4NkdcdtQ"
 			]
 		},
 		"@openzeppelin/contracts/utils/math/SignedMath.sol": {
