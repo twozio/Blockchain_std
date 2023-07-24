@@ -30,9 +30,29 @@ contract('Ticket', (accounts) => {
         assert.equal(ticketInfo.uses, 4);
     });
 
+    it('should not use a ticket if not the owner or approved', async () => {
+        const otherAccount = accounts[2];
+        await truffleAssert.reverts(ticket.useTicket(1, {from: otherAccount}), "Caller is not owner nor approved");
+    });
+
+    it('should use a ticket until it becomes inactive', async () => {
+        for (let i = 4; i > 0; i--) {
+            const tx = await ticket.useTicket(1, {from: buyer});
+            truffleAssert.eventEmitted(tx, 'ticketuse');
+            let ticketInfo = await ticket.getTicketInfo(1);
+            assert.equal(ticketInfo.uses, i-1);
+            if (i != 1) {
+                assert.isTrue(ticketInfo.active);
+            } else {
+                assert.isFalse(ticketInfo.active);
+            }
+        }
+    });
+
     it('should burn a ticket', async () => {
         await truffleAssert.reverts(ticket.burnTicket(1, {from: owner}), "ERC721: burn caller is not owner nor approved");
         await ticket.burnTicket(1, {from: buyer});
-        await truffleAssert.reverts(ticket.getTicketInfo(1), "revert");
+        let ticketInfo = await ticket.getTicketInfo(1);
+        assert.equal(ticketInfo.seatNumber, "");
     });
 });

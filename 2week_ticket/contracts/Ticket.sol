@@ -40,12 +40,12 @@ contract Ticket is ERC721URIStorage, Ownable {
         _tickets[tokenId] = TicketInfo(startTime, endTime, uses, price, seatNumber, true);
     }
 
-    function buyTicket(uint256 tokenId) public payable {            // 티켓 구매
+    function buyTicket(uint256 tokenId) external payable {          // 티켓 구매
         require(msg.value == _tickets[tokenId].price, "Incorrect value sent");
         require(_tickets[tokenId].active, "Ticket is not active");  // 상태 확인
-        address currentOwner = ownerOf(tokenId);
-        pendingWithdrawals[currentOwner] += msg.value;              // 지불 금액을 기록
-        _transfer(currentOwner, msg.sender, tokenId);
+        (bool success, ) = payable(ownerOf(tokenId)).call{value: msg.value}("");
+        require(success, "Transfer failed");
+        _transfer(ownerOf(tokenId), msg.sender, tokenId);           // owner에게 직접전송
     }
 
     function burnTicket(uint256 tokenId) public {                   // 티켓 삭제
@@ -54,7 +54,7 @@ contract Ticket is ERC721URIStorage, Ownable {
         delete _tickets[tokenId];
     }
 
-    function getTicketInfo(uint256 tokenId) public view returns (TicketInfo memory) {       // 티켓 정보 조회
+    function getTicketInfo(uint256 tokenId) public view returns (TicketInfo memory) {
         return _tickets[tokenId];
     }
 
@@ -69,12 +69,5 @@ contract Ticket is ERC721URIStorage, Ownable {
         if (_tickets[tokenId].uses == 0) {
             _tickets[tokenId].active = false;
         }
-    }
-
-    function withdraw() public {                                    // 인출
-        uint amount = pendingWithdrawals[msg.sender];
-        require(amount > 0, "Nothing to withdraw");
-        pendingWithdrawals[msg.sender] = 0;                         // @dev 재진입 공격을 피하기 위해 전송 이전 초기화
-        payable(msg.sender).transfer(amount);                       // 금액 전송
     }
 }
