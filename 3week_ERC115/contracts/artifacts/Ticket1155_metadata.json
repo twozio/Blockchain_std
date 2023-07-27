@@ -307,6 +307,11 @@
 						"type": "uint256"
 					},
 					{
+						"internalType": "uint256",
+						"name": "amounts",
+						"type": "uint256"
+					},
+					{
 						"internalType": "string",
 						"name": "name",
 						"type": "string"
@@ -634,11 +639,11 @@
 			]
 		},
 		"contracts/Ticket1155.sol": {
-			"keccak256": "0x116bc361dc95b831ab4cf4e67e12dc08928d809475552944c9294306bee91133",
+			"keccak256": "0x6399291399dd3f06c1b22a0f1de22465a199330b30506df6b792ee4b2683674c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://882095e4032e5f258be380a90e2af6abe27699ad4c6a0c4dc0481bfdaef2f6db",
-				"dweb:/ipfs/QmPUXtDAfssqXkJdRnSj1xr2YnW9k8jj5K8rigwrcpeEq9"
+				"bzz-raw://b3124a870f85f701f57c254748d7ea6199ba4663d26c79a2529d46f2a0f528ad",
+				"dweb:/ipfs/QmfHRubjhKB1FYxf62kBhqV9tNd5uESeuypxoDsHXk1Tpc"
 			]
 		}
 	},

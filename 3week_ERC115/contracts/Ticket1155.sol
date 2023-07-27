@@ -18,7 +18,7 @@ contract Ticket1155 is ERC1155, Ownable {
     uint256 private ticketIndex = 1;
     mapping(uint256 => TicketInfo) private tickets;
 
-    function mintTicket(uint limitTime, uint price, uint maxTicket, string memory name) public onlyOwner {
+    function mintTicket(uint limitTime, uint price, uint maxTicket, uint amounts, string memory name) public onlyOwner {
         TicketInfo memory newTicket = TicketInfo({
             id: ticketIndex,
             limitTime: limitTime,
@@ -27,7 +27,7 @@ contract Ticket1155 is ERC1155, Ownable {
             name: name
         });
         tickets[ticketIndex] = newTicket;
-        _mint(msg.sender, ticketIndex, maxTicket, "");
+        _mint(msg.sender, ticketIndex, amounts, "");
         ticketIndex++;
     }
 
@@ -36,7 +36,7 @@ contract Ticket1155 is ERC1155, Ownable {
 
         uint totalCost = 0;
         for(uint i = 0; i < ids.length; i++) {
-            require(tickets[ids[i]].maxTicket >= amounts[i], "Not enough tickets available");
+            require(tickets[ids[i]].maxTicket <= amounts[i], "Do not buy too many tickets");
             totalCost += tickets[ids[i]].price * amounts[i];
         }
 
@@ -44,7 +44,6 @@ contract Ticket1155 is ERC1155, Ownable {
 
         for(uint i = 0; i < ids.length; i++) {
             _safeTransferFrom(owner(), msg.sender, ids[i], amounts[i], "");
-            tickets[ids[i]].maxTicket -= amounts[i];
         }
     }
 
