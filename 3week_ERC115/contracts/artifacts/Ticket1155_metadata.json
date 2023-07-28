@@ -243,7 +243,7 @@
 				"outputs": [
 					{
 						"internalType": "string",
-						"name": "name",
+						"name": "ticketName",
 						"type": "string"
 					},
 					{
@@ -258,7 +258,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "maxTicket",
+						"name": "limitAmount",
 						"type": "uint256"
 					}
 				],
@@ -303,7 +303,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "maxTicket",
+						"name": "limitAmount",
 						"type": "uint256"
 					},
 					{
@@ -313,13 +313,26 @@
 					},
 					{
 						"internalType": "string",
-						"name": "name",
+						"name": "ticketName",
 						"type": "string"
 					}
 				],
 				"name": "mintTicket",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -440,6 +453,19 @@
 						"internalType": "bool",
 						"name": "",
 						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "symbol",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -639,11 +665,11 @@
 			]
 		},
 		"contracts/Ticket1155.sol": {
-			"keccak256": "0x6399291399dd3f06c1b22a0f1de22465a199330b30506df6b792ee4b2683674c",
+			"keccak256": "0x8dc41c3545759d5403d4324a7f4b9ea0e37fd313df818753cb05deefea6b0dc1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b3124a870f85f701f57c254748d7ea6199ba4663d26c79a2529d46f2a0f528ad",
-				"dweb:/ipfs/QmfHRubjhKB1FYxf62kBhqV9tNd5uESeuypxoDsHXk1Tpc"
+				"bzz-raw://773b290a09bf702fe69c2b20e8aa7876066946e81cff8eeabd73d459946f0b67",
+				"dweb:/ipfs/QmcgeUKEkeT8tYQWKBCa6qq6GL4YzPRR1MKw63aCsME239"
 			]
 		}
 	},
