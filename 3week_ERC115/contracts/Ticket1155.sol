@@ -54,7 +54,7 @@ contract Ticket1155 is ERC1155, Ownable {
             totalCost += tickets[ids[i]].price * amounts[i];
         }
 
-        require(msg.value >= totalCost, "Not enough Ether");
+        require(msg.value == totalCost, "Not enough Ether");
 
         for(uint i = 0; i < ids.length; i++) {
             _safeTransferFrom(owner(), msg.sender, ids[i], amounts[i], "");
