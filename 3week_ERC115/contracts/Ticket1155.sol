@@ -26,6 +26,10 @@ contract Ticket1155 is ERC1155, Ownable {
     uint private ticketIndex = 1;
     mapping(uint => TicketInfo) private tickets;
 
+    function getTicketIndex() public view returns (uint) {
+        return ticketIndex;
+    }
+
     function mintTicket(uint limitTime, uint price, uint limitAmount,uint amounts, string memory ticketName) public onlyOwner {
         require(amounts <= maxTicket, "You can mint under amount 100");
         TicketInfo memory newTicket = TicketInfo({

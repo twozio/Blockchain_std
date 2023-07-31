@@ -41,7 +41,7 @@ contract("Ticket1155", async (accounts) => {
         const limitTime = Math.floor(Date.now() / 1000) - 3600; // 1 hour ago
     
         await contract.mintTicket(limitTime, ticketPrice, ticketAmount, ticketAmount, ticketName, { from: accounts[0] });
-        const ticketId = (await contract.ticketIndex()).toNumber() - 1;
+        const ticketId = (await contract.getTicketIndex()).toNumber() - 1;
     
         try {
             await contract.buyTicket(ticketId, ticketAmount, { from: accounts[1], value: ticketPrice });
@@ -75,11 +75,14 @@ contract("Ticket1155", async (accounts) => {
     
         await contract.mintTicket(limitTime, ticketPrice, ticketAmount, ticketAmount, ticketName, { from: accounts[0] });
     
-        const ticketId = (await contract.ticketIndex()).toNumber() - 1;
+        const ticketId = (await contract.getTicketIndex()).toNumber() - 1;
     
-        // Even though the ticket is expired, you're still able to buy it. 
-        // This might be something you want to change in your smart contract.
-        await contract.buyTicket(ticketId, ticketAmount, { from: accounts[1], value: ticketPrice });
+        // Make sure account[1] has enough Ether
+        const balance = await web3.eth.getBalance(accounts[1]);
+        assert(web3.utils.toBN(balance).gte(web3.utils.toBN(ticketPrice)), "account[1] does not have enough Ether");
+    
+        // Buy the ticket
+        await contract.buyTicket(ticketId, 1, { from: accounts[1], value: ticketPrice });
     
         // Now we'll try to use the ticket. Since the ticket is expired, this should fail.
         try {
@@ -100,7 +103,7 @@ contract("Ticket1155", async (accounts) => {
         const limitTime = Math.floor(Date.now() / 1000) + 3600; // 1 hour from now
 
         await contract.mintTicket(limitTime, ticketPrice, ticketAmount, ticketAmount, ticketName, { from: accounts[0] });
-        const ticketId = (await contract.ticketIndex()).toNumber() - 1;
+        const ticketId = (await contract.getTicketIndex()).toNumber() - 1;
 
         const ticketInfo = await contract.getTicketInfo(ticketId, { from: accounts[0] });
         assert.equal(ticketInfo.ticketName, ticketName);
