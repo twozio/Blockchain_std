@@ -50,6 +50,7 @@ contract Ticket1155 is ERC1155, Ownable {
         uint totalCost = 0;
         for(uint i = 0; i < ids.length; i++) {
             require(tickets[ids[i]].limitAmount >= amounts[i], "Do not buy too many tickets");
+            require(block.timestamp <= tickets[ids[i]].limitTime, "Cannot purchase expired ticket"); // Check that the ticket is not expired
             totalCost += tickets[ids[i]].price * amounts[i];
         }
 
