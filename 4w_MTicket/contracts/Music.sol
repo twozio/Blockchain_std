@@ -2,38 +2,35 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "./MusicTicket.sol"; // Import MusicTicket contract
 
 contract Music is ERC1155 {
-    // Define the structure of a Music Info
     struct MusicInfo {
         uint id;
-        address owner;
-        string name;
-        // Additional attributes
+        string singerName;
+        string composer;
+        string lyricist;
+        uint releaseDate;
     }
 
     uint private musicIndex = 1;
-    mapping(uint => MusicInfo) private MusicInfos;
+    mapping(uint => MusicInfo) private musicInfos;
+    mapping(uint => address) private musicOwners; // Mapping to track music owners
 
     constructor() ERC1155("https://dev-internship.s3.ap-northeast-2.amazonaws.com/Music/{id}.json") {}
 
-    // Event to notify when a new music item is minted
-    event MusicMinted(uint indexed id, address indexed owner, string name);
-
-    // Function to mint a new music item
-    function mintMusic(string memory name) public returns (uint) {
-        uint id = musicIndex;
-        MusicInfos[id] = MusicInfo({
-            id: id,
-            owner: msg.sender,
-            name: name
-            // Additional attributes
-        });
+    function mintMusic(string memory singerName, string memory composer, string memory lyricist, uint releaseDate) public {
+        uint id = musicIndex++;
+        musicInfos[id] = MusicInfo(id, singerName, composer, lyricist, releaseDate);
+        musicOwners[id] = msg.sender; // Set the music owner
         _mint(msg.sender, id, 1, "");
-        musicIndex++;
-        emit MusicMinted(id, msg.sender, name);
-        return id;
     }
 
-    // Additional functions to manage or verify ownership of music items
+    function getMusicInfo(uint id) public view returns (MusicInfo memory) {
+        return musicInfos[id];
+    }
+
+    function ownerOf(uint id) public view returns (address) {
+        return musicOwners[id]; // Return the music owner
+    }
 }

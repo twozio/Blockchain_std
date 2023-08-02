@@ -1,46 +1,51 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "./Music.sol";
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 
 contract MusicTicket is ERC1155 {
-    Music private musicContract; // Reference to the Music contract
+    Music public musicContract; // Reference to the Music contract
 
-    struct Ticket {
-        uint id;
-        uint musicId;
-        address owner;
-        // Additional attributes
+    struct TicketInfo {
+        uint musicId; // Reference to the corresponding music ID
+        uint expiryDate; // Expiration date for the ticket
+        uint downloadLimit; // Limit on the number of downloads
+        uint streamLimit; // Limit on the number of streams
+        uint price; // Price of the ticket
     }
 
     uint private ticketIndex = 1;
-    mapping(uint => Ticket) private tickets;
+    mapping(uint => TicketInfo) private ticketInfos;
 
-    constructor(address _musicContract) ERC1155("https://dev-internship.s3.ap-northeast-2.amazonaws.com/Music/{id}.json") {
+    constructor(address _musicContract) ERC1155("https://dev-internship.s3.ap-northeast-2.amazonaws.com/Music/Ticket.json") {
         musicContract = Music(_musicContract);
     }
 
-    // Event to notify when a new music ticket is minted
-    event TicketMinted(uint indexed id, uint indexed musicId, address indexed owner);
+    // Mint a new music ticket
+    function mintTicket(uint musicId, uint expiryDate, uint downloadLimit, uint streamLimit, uint price) public {
+        require(msg.sender == musicContract.ownerOf(musicId), "Only the owner of the music can mint a ticket");
 
-    // Function to mint a new music ticket
-    function mintTicket(uint musicId) public returns (uint) {
-        // Verify that the caller is the owner of the specified music item in the Music contract
-        require(musicContract.balanceOf(msg.sender, musicId) > 0, "Not the owner of the specified music item");
+        TicketInfo memory newTicket = TicketInfo(musicId, expiryDate, downloadLimit, streamLimit, price);
+        ticketInfos[ticketIndex] = newTicket;
 
-        uint id = ticketIndex;
-        tickets[id] = Ticket({
-            id: id,
-            musicId: musicId,
-            owner: msg.sender
-            // Additional attributes
-        });
-        _mint(msg.sender, id, 1, "");
+        _mint(msg.sender, ticketIndex, 1, "");
         ticketIndex++;
-        emit TicketMinted(id, musicId, msg.sender);
-        return id;
     }
 
-    // Additional functions to manage or interact with music tickets
+    // Purchase a music ticket
+    function purchaseTicket(uint ticketId) public payable {
+        require(msg.value == ticketInfos[ticketId].price, "Incorrect price paid");
+        require(msg.sender != musicContract.ownerOf(ticketInfos[ticketId].musicId), "Owner cannot purchase their own ticket");
+
+        address musicOwner = musicContract.ownerOf(ticketInfos[ticketId].musicId);
+        payable(musicOwner).transfer(msg.value); // Transfer Ether directly to the owner of the music
+
+        _safeTransferFrom(musicContract.ownerOf(ticketId), msg.sender, ticketId, 1, "");
+    }
+
+    // Get ticket information
+    function getTicketInfo(uint ticketId) public view returns (TicketInfo memory) {
+        return ticketInfos[ticketId];
+    }
 }
