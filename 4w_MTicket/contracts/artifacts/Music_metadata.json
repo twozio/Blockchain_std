@@ -482,7 +482,23 @@
 		"remappings": []
 	},
 	"sources": {
-		"@openzeppelin/contracts/token/ERC1155/ERC1155.sol": {
+		"contracts/Music.sol": {
+			"keccak256": "0x898e63b31e8f388b1b025d29eb2510224ea541895fcd1b1105b317b8ab70da83",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3c44801e4d79ccb69cf03cde96e1342f26a784e12c4e63a56ff9f7664f8dea0f",
+				"dweb:/ipfs/QmaZL9wZU8NgZNBRsyWcu3fNTPcnK6sswschSxEmv1om3W"
+			]
+		},
+		"contracts/MusicTicket.sol": {
+			"keccak256": "0x2b4582a42c84b7967f9304fe3c443cb959ebda95e01bcab2b5ed740e44aa05fd",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://09127bfa40a83bcbc4ccab74699d986d33412934b0fdbbc6dc53a4ea4d8b8978",
+				"dweb:/ipfs/QmPTmB4xiDbJpinD1jTamciVohjXQAxMAA2BiBbgmp3Gco"
+			]
+		},
+		"node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol": {
 			"keccak256": "0x81149353c99ccf8ff18af7701bc3f38665c7a97e344cdc0d27f927f03d22af0e",
 			"license": "MIT",
 			"urls": [
@@ -490,7 +506,7 @@
 				"dweb:/ipfs/QmP2fX6BzbgZyskxXqckeMzC1C3g7wKEbdtZfMegHoGW3j"
 			]
 		},
-		"@openzeppelin/contracts/token/ERC1155/IERC1155.sol": {
+		"node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155.sol": {
 			"keccak256": "0xcab667ddad478ff0d39c2053ca77fac778af8483c18ab07d810277b4216fd582",
 			"license": "MIT",
 			"urls": [
@@ -498,7 +514,7 @@
 				"dweb:/ipfs/QmRLKyVE2n7e2Jo4bLNn8eLgqqhNGYnVQyjJPWdr8poskf"
 			]
 		},
-		"@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol": {
+		"node_modules/@openzeppelin/contracts/token/ERC1155/IERC1155Receiver.sol": {
 			"keccak256": "0xeb373f1fdc7b755c6a750123a9b9e3a8a02c1470042fd6505d875000a80bde0b",
 			"license": "MIT",
 			"urls": [
@@ -506,7 +522,7 @@
 				"dweb:/ipfs/QmVVE7AiRjKaQYYji7TkjmTeVzGpNmms5eoxqTCfvvpj6D"
 			]
 		},
-		"@openzeppelin/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol": {
+		"node_modules/@openzeppelin/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol": {
 			"keccak256": "0xa66d18b9a85458d28fc3304717964502ae36f7f8a2ff35bc83f6f85d74b03574",
 			"license": "MIT",
 			"urls": [
@@ -514,7 +530,7 @@
 				"dweb:/ipfs/QmNoSE6knNfFncdDDLTb3fGR6oSQty1srG96Vsx3E9wQdw"
 			]
 		},
-		"@openzeppelin/contracts/utils/Address.sol": {
+		"node_modules/@openzeppelin/contracts/utils/Address.sol": {
 			"keccak256": "0x006dd67219697fe68d7fbfdea512e7c4cb64a43565ed86171d67e844982da6fa",
 			"license": "MIT",
 			"urls": [
@@ -522,7 +538,7 @@
 				"dweb:/ipfs/QmfYjnjRbWqYpuxurqveE6HtzsY1Xx323J428AKQgtBJZm"
 			]
 		},
-		"@openzeppelin/contracts/utils/Context.sol": {
+		"node_modules/@openzeppelin/contracts/utils/Context.sol": {
 			"keccak256": "0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7",
 			"license": "MIT",
 			"urls": [
@@ -530,7 +546,7 @@
 				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
 			]
 		},
-		"@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+		"node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
 			"keccak256": "0xd10975de010d89fd1c78dc5e8a9a7e7f496198085c151648f20cba166b32582b",
 			"license": "MIT",
 			"urls": [
@@ -538,28 +554,12 @@
 				"dweb:/ipfs/QmZptt1nmYoA5SgjwnSgWqgUSDgm4q52Yos3xhnMv3MV43"
 			]
 		},
-		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+		"node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
 			"keccak256": "0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1",
 			"license": "MIT",
 			"urls": [
 				"bzz-raw://be161e54f24e5c6fae81a12db1a8ae87bc5ae1b0ddc805d82a1440a68455088f",
 				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
-			]
-		},
-		"contracts/Music.sol": {
-			"keccak256": "0x80204ea5f64e1fe9deb855de239c8e12ab0dbbf3ed5463b9f2791f6bdd209888",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://23b36daed1bdabcd02a25afdce42f32cd6521a4937f948e3de38eb88b2c52d56",
-				"dweb:/ipfs/QmPMzNdGV5RC6rWyMT4ic1i8MdJrFeteWxuf1TboKNrCBt"
-			]
-		},
-		"contracts/MusicTicket.sol": {
-			"keccak256": "0x9f832a7dcb380d135a39e2a224be7031ede29fd3cd2965223ad7ef212a6a5689",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://9e09fbea9e52fa1380f06fc8b1a7ab2995e1d51459a742a943a1f6c90c62ad76",
-				"dweb:/ipfs/QmS2C7jhLS4bPpKDF8CdkL3JPUrVzYtGCYUHAqib3oewj8"
 			]
 		}
 	},

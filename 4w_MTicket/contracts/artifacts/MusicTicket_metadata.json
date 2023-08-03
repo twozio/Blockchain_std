@@ -6,7 +6,13 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_musicContract",
+						"type": "address"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -180,46 +186,13 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "id",
+						"name": "ticketId",
 						"type": "uint256"
 					}
 				],
-				"name": "getMusicInfo",
-				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "id",
-								"type": "uint256"
-							},
-							{
-								"internalType": "string",
-								"name": "singerName",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "composer",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "lyricist",
-								"type": "string"
-							},
-							{
-								"internalType": "uint256",
-								"name": "releaseDate",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct Music.MusicInfo",
-						"name": "",
-						"type": "tuple"
-					}
-				],
-				"stateMutability": "view",
+				"name": "buyTicket",
+				"outputs": [],
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -295,56 +268,18 @@
 			{
 				"inputs": [
 					{
-						"internalType": "string",
-						"name": "singerName",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "composer",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "lyricist",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "releaseDate",
-						"type": "uint256"
-					}
-				],
-				"name": "mintMusic",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "uint256",
 						"name": "musicId",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "expiryDate",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "downloadLimit",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "streamLimit",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
 						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
 						"type": "uint256"
 					}
 				],
@@ -354,35 +289,16 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					}
-				],
-				"name": "ownerOf",
+				"inputs": [],
+				"name": "musicContract",
 				"outputs": [
 					{
-						"internalType": "address",
+						"internalType": "contract Music",
 						"name": "",
 						"type": "address"
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "ticketId",
-						"type": "uint256"
-					}
-				],
-				"name": "purchaseTicket",
-				"outputs": [],
-				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -639,19 +555,19 @@
 			]
 		},
 		"contracts/Music.sol": {
-			"keccak256": "0x3d74cba71428a763864bfa053db808a683587463ba020f62e7cf50506225f18e",
+			"keccak256": "0x80204ea5f64e1fe9deb855de239c8e12ab0dbbf3ed5463b9f2791f6bdd209888",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://bcbdc2971bdc01e51a9b7d8a1c4bcaa38e78f306d563afecaabc8f40cafa91c4",
-				"dweb:/ipfs/QmZYBCohocNLoehLPWpRdh7HMhKHUsUfaBk9mNjsALCMfW"
+				"bzz-raw://23b36daed1bdabcd02a25afdce42f32cd6521a4937f948e3de38eb88b2c52d56",
+				"dweb:/ipfs/QmPMzNdGV5RC6rWyMT4ic1i8MdJrFeteWxuf1TboKNrCBt"
 			]
 		},
 		"contracts/MusicTicket.sol": {
-			"keccak256": "0x8073c51cb3f12cbcc2921e4e3c0b337de8425e690f8ac0cb618043fd3c95880e",
+			"keccak256": "0x7996806356bfb09942c3b5b949a05a7547619daf0ef741a0d777a8fc117a50e6",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5d1d26cf44e24800671c4df795351454217905d2167e0fc85a6fe443dc0d0a33",
-				"dweb:/ipfs/QmP2RX9ZMEk4jZ1hBiPEcjKUygS3Dqzv4Sa2hERbStN5qK"
+				"bzz-raw://1338b08d21ce824b5347942b696d6fcdd7e7af2a4b374df0e667eea6728dcc69",
+				"dweb:/ipfs/QmWeM93gatNn1FATjEFScQvx5p7zVh7fjDsC6rHf7cCixF"
 			]
 		}
 	},

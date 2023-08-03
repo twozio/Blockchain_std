@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "./Music.sol";
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 
 contract MusicTicket is ERC1155 {
     Music public musicContract; // Reference to the Music contract
@@ -23,18 +23,25 @@ contract MusicTicket is ERC1155 {
     }
 
     // Mint a new music ticket
-    function mintTicket(uint musicId, uint expiryDate, uint downloadLimit, uint streamLimit, uint price) public {
+    function mintTicket(uint musicId, uint price, uint amount) public {
         require(msg.sender == musicContract.ownerOf(musicId), "Only the owner of the music can mint a ticket");
+
+        uint downloadLimit = 20;
+        uint streamLimit = 500;
+        uint expiryDate = block.timestamp + 2592000;
 
         TicketInfo memory newTicket = TicketInfo(musicId, expiryDate, downloadLimit, streamLimit, price);
         ticketInfos[ticketIndex] = newTicket;
 
-        _mint(msg.sender, ticketIndex, 1, "");
+        _mint(msg.sender, ticketIndex, amount, "");
         ticketIndex++;
     }
+    
+    function buyTickets(uint[] memory ticketIds, uint[] memory amount) public {
 
+    }
     // Purchase a music ticket
-    function purchaseTicket(uint ticketId) public payable {
+    function buyTicket(uint ticketId) public payable {
         require(msg.value == ticketInfos[ticketId].price, "Incorrect price paid");
         require(msg.sender != musicContract.ownerOf(ticketInfos[ticketId].musicId), "Owner cannot purchase their own ticket");
 
@@ -48,4 +55,18 @@ contract MusicTicket is ERC1155 {
     function getTicketInfo(uint ticketId) public view returns (TicketInfo memory) {
         return ticketInfos[ticketId];
     }
+
+    function getMusicTicketInfo(uint ticketId) public view returns (TicketInfo memory) {
+
+    }
+    
+
+    function downlaodMusic(uint ticketId) public {
+
+    }
+
+    function streamMusic(uint ticketId) public {
+
+    }
+
 }
