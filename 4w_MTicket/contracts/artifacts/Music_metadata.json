@@ -267,11 +267,34 @@
 						"internalType": "uint256",
 						"name": "releaseDate",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
 					}
 				],
 				"name": "mintMusic",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "musicTicketContract",
+				"outputs": [
+					{
+						"internalType": "contract MusicTicket",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -483,19 +506,19 @@
 	},
 	"sources": {
 		"contracts/Music.sol": {
-			"keccak256": "0x898e63b31e8f388b1b025d29eb2510224ea541895fcd1b1105b317b8ab70da83",
+			"keccak256": "0x99801399e96bc336bf8b1e69f7ebeb0cb1468652309bc636f4e28d1db236135e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3c44801e4d79ccb69cf03cde96e1342f26a784e12c4e63a56ff9f7664f8dea0f",
-				"dweb:/ipfs/QmaZL9wZU8NgZNBRsyWcu3fNTPcnK6sswschSxEmv1om3W"
+				"bzz-raw://08f7c37435cab893204ba5ea56e8e9ed25226aef1377b5809f8fd3e40f3cb5c6",
+				"dweb:/ipfs/QmWYyqj9Qk8ZwEq6P71EsDrznTLfY8bB3VKt5wSA24exgn"
 			]
 		},
 		"contracts/MusicTicket.sol": {
-			"keccak256": "0x2b4582a42c84b7967f9304fe3c443cb959ebda95e01bcab2b5ed740e44aa05fd",
+			"keccak256": "0xe272a2df1a353f9fa3a5cd9dabefbfd0a42b6709dcf1b5b968f3704d7fc1bcf4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://09127bfa40a83bcbc4ccab74699d986d33412934b0fdbbc6dc53a4ea4d8b8978",
-				"dweb:/ipfs/QmPTmB4xiDbJpinD1jTamciVohjXQAxMAA2BiBbgmp3Gco"
+				"bzz-raw://2debe539006fcafbd8d77fe92def3e9115a4e83677f7804395a476d70d641471",
+				"dweb:/ipfs/QmWM8kqJ266K2Af5hTGj2SV3kbsmjfigyU4AeMZuHfB9w3"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol": {

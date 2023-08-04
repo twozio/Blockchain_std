@@ -15,6 +15,12 @@ contract MusicTicket is ERC1155 {
         uint price; // Price of the ticket
     }
 
+    modifier onlyMusicContract() {
+        require(msg.sender == address(musicContract), "Only the Music contract can call this function");
+        _;
+    }
+
+
     uint private ticketIndex = 1;
     mapping(uint => TicketInfo) private ticketInfos;
 
@@ -23,8 +29,8 @@ contract MusicTicket is ERC1155 {
     }
 
     // Mint a new music ticket
-    function mintTicket(uint musicId, uint price, uint amount) public {
-        require(msg.sender == musicContract.ownerOf(musicId), "Only the owner of the music can mint a ticket");
+    function mintTicket(uint musicId, uint price, uint amount) public onlyMusicContract {
+        require(msg.sender == address(musicContract), "Only the music can mint a ticket");
 
         uint downloadLimit = 20;
         uint streamLimit = 500;
@@ -36,37 +42,56 @@ contract MusicTicket is ERC1155 {
         _mint(msg.sender, ticketIndex, amount, "");
         ticketIndex++;
     }
-    
-    function buyTickets(uint[] memory ticketIds, uint[] memory amount) public {
-
-    }
     // Purchase a music ticket
-    function buyTicket(uint ticketId) public payable {
-        require(msg.value == ticketInfos[ticketId].price, "Incorrect price paid");
-        require(msg.sender != musicContract.ownerOf(ticketInfos[ticketId].musicId), "Owner cannot purchase their own ticket");
+    function buyTickets(uint[] memory ticketIds, uint[] memory amounts) public payable {
+        require(ticketIds.length == amounts.length, "Mismatch in ticketIds and amounts");
+        require(ticketIds.length > 0, "Must purchase at least one ticket");
 
-        address musicOwner = musicContract.ownerOf(ticketInfos[ticketId].musicId);
-        payable(musicOwner).transfer(msg.value); // Transfer Ether directly to the owner of the music
+        uint totalCost = 0;
 
-        _safeTransferFrom(musicContract.ownerOf(ticketId), msg.sender, ticketId, 1, "");
+        // Calculate the total cost for all tickets
+        for (uint i = 0; i < ticketIds.length; i++) {
+            uint ticketId = ticketIds[i];
+            uint amount = amounts[i];
+            require(ticketInfos[ticketId].price > 0, "Ticket does not exist");
+            require(msg.sender != musicContract.ownerOf(ticketInfos[ticketId].musicId), "Owner cannot purchase their own ticket");
+
+            totalCost += ticketInfos[ticketId].price * amount;
+        }
+
+        // Ensure enough funds were sent
+        require(msg.value == totalCost, "Incorrect price paid");
+
+        // Transfer the tickets and send Ether to the music owners
+        for (uint i = 0; i < ticketIds.length; i++) {
+            uint ticketId = ticketIds[i];
+            uint amount = amounts[i];
+
+            address musicOwner = musicContract.ownerOf(ticketInfos[ticketId].musicId);
+            payable(musicOwner).transfer(ticketInfos[ticketId].price * amount); // Transfer Ether to the owner of the music
+
+            _safeTransferFrom(address(this), msg.sender, ticketId, amount, ""); // Transfer the tickets
+        }
     }
-
     // Get ticket information
     function getTicketInfo(uint ticketId) public view returns (TicketInfo memory) {
         return ticketInfos[ticketId];
     }
 
-    function getMusicTicketInfo(uint ticketId) public view returns (TicketInfo memory) {
+    function downloadMusic(uint ticketId) public {
+        require(balanceOf(msg.sender, ticketId) > 0, "Caller does not own a ticket");
+        require(block.timestamp <= ticketInfos[ticketId].expiryDate, "This Ticket is expired!");
+        require(ticketInfos[ticketId].downloadLimit > 0, "You don't have any download chance!");
 
-    }
-    
-
-    function downlaodMusic(uint ticketId) public {
-
+        ticketInfos[ticketId].downloadLimit--;
     }
 
     function streamMusic(uint ticketId) public {
+        require(balanceOf(msg.sender, ticketId) > 0, "Caller does not own a ticket");
+        require(block.timestamp <= ticketInfos[ticketId].expiryDate, "This Ticket is expired!");
+        require(ticketInfos[ticketId].streamLimit > 0, "You don't have any streaming chance!");
 
+        ticketInfos[ticketId].streamLimit--;
     }
 
 }
