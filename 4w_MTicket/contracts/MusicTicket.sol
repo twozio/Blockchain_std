@@ -20,7 +20,6 @@ contract MusicTicket is ERC1155 {
         _;
     }
 
-
     uint private ticketIndex = 1;
     mapping(uint => TicketInfo) private ticketInfos;
 
@@ -43,7 +42,7 @@ contract MusicTicket is ERC1155 {
         ticketIndex++;
     }
     // Purchase a music ticket
-    function buyTickets(uint[] memory ticketIds, uint[] memory amounts) public payable {
+    function buyTickets(uint[] memory ticketIds, uint[] memory amounts) public payable onlyMusicContract {
         require(ticketIds.length == amounts.length, "Mismatch in ticketIds and amounts");
         require(ticketIds.length > 0, "Must purchase at least one ticket");
 
@@ -74,11 +73,11 @@ contract MusicTicket is ERC1155 {
         }
     }
     // Get ticket information
-    function getTicketInfo(uint ticketId) public view returns (TicketInfo memory) {
+    function getTicketInfo(uint ticketId) public view onlyMusicContract returns (TicketInfo memory) {
         return ticketInfos[ticketId];
     }
 
-    function downloadMusic(uint ticketId) public {
+    function downloadMusic(uint ticketId) public onlyMusicContract {
         require(balanceOf(msg.sender, ticketId) > 0, "Caller does not own a ticket");
         require(block.timestamp <= ticketInfos[ticketId].expiryDate, "This Ticket is expired!");
         require(ticketInfos[ticketId].downloadLimit > 0, "You don't have any download chance!");
@@ -86,7 +85,7 @@ contract MusicTicket is ERC1155 {
         ticketInfos[ticketId].downloadLimit--;
     }
 
-    function streamMusic(uint ticketId) public {
+    function streamMusic(uint ticketId) public onlyMusicContract {
         require(balanceOf(msg.sender, ticketId) > 0, "Caller does not own a ticket");
         require(block.timestamp <= ticketInfos[ticketId].expiryDate, "This Ticket is expired!");
         require(ticketInfos[ticketId].streamLimit > 0, "You don't have any streaming chance!");

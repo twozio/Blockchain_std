@@ -185,12 +185,17 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "ticketId",
-						"type": "uint256"
+						"internalType": "uint256[]",
+						"name": "ticketIds",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "amounts",
+						"type": "uint256[]"
 					}
 				],
-				"name": "buyTicket",
+				"name": "buyTickets",
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
@@ -198,30 +203,12 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256[]",
-						"name": "ticketIds",
-						"type": "uint256[]"
-					},
-					{
-						"internalType": "uint256[]",
-						"name": "amount",
-						"type": "uint256[]"
-					}
-				],
-				"name": "buyTickets",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "uint256",
 						"name": "ticketId",
 						"type": "uint256"
 					}
 				],
-				"name": "downlaodMusic",
+				"name": "downloadMusic",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -535,19 +522,19 @@
 	},
 	"sources": {
 		"contracts/Music.sol": {
-			"keccak256": "0x898e63b31e8f388b1b025d29eb2510224ea541895fcd1b1105b317b8ab70da83",
+			"keccak256": "0x558c08c2dfb2b33068735cb640051c8bf4a1acf3185d309a17af22b97dce620f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3c44801e4d79ccb69cf03cde96e1342f26a784e12c4e63a56ff9f7664f8dea0f",
-				"dweb:/ipfs/QmaZL9wZU8NgZNBRsyWcu3fNTPcnK6sswschSxEmv1om3W"
+				"bzz-raw://22dad732a8da19d084fab00ae357bc5bcc19955644d598f0141cd69e980eff02",
+				"dweb:/ipfs/QmUvXJrCZwVBNmGng3st7NQe7KKoqcVemHxEMfQKpfKx4D"
 			]
 		},
 		"contracts/MusicTicket.sol": {
-			"keccak256": "0xe272a2df1a353f9fa3a5cd9dabefbfd0a42b6709dcf1b5b968f3704d7fc1bcf4",
+			"keccak256": "0x75d9d0a916237589cdf7dcf06193744fe5ef7eae908541fc1230ce3e453f119d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2debe539006fcafbd8d77fe92def3e9115a4e83677f7804395a476d70d641471",
-				"dweb:/ipfs/QmWM8kqJ266K2Af5hTGj2SV3kbsmjfigyU4AeMZuHfB9w3"
+				"bzz-raw://06507f98e3c65b84c529243cedf514e940d0a085f6fb0cd8f20710cec6a4dd88",
+				"dweb:/ipfs/QmfYfQoufHQQwNdKL4nfmPokq59GPXxBoT4q9qKYrcKqWe"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol": {
