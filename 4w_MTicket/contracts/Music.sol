@@ -2,9 +2,10 @@
 pragma solidity ^0.8.0;
 
 import "../node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Receiver.sol";
 import "./MusicTicket.sol"; // Import MusicTicket contract
 
-contract Music is ERC1155 {
+contract Music is ERC1155, ERC1155Receiver {
     MusicTicket public musicTicketContract; // Reference to the MusicTicket contract
 
     struct MusicInfo {
@@ -15,11 +16,38 @@ contract Music is ERC1155 {
         uint releaseDate;
     }
 
-    uint private musicIndex = 0;
+    uint private musicIndex = 1;
     mapping(uint => MusicInfo) private musicInfos;
     mapping(uint => address) private musicOwners; // Mapping to track music owners
 
-    constructor(address _musicTicketContract) ERC1155("https://dev-internship.s3.ap-northeast-2.amazonaws.com/Music/{id}.json") {
+    constructor() ERC1155("https://dev-internship.s3.ap-northeast-2.amazonaws.com/Music/{id}.json") {}
+
+    function supportsInterface(bytes4 interfaceId) public view override(ERC1155, ERC1155Receiver) returns (bool) {
+        return super.supportsInterface(interfaceId);
+    }
+
+    // This function is triggered when a single token is transferred to this contract
+    function onERC1155Received(address operator, address from, uint256 id, uint256 value, bytes calldata data) 
+        external 
+        pure
+        override 
+        returns(bytes4) 
+    {
+        return this.onERC1155Received.selector; // Return the correct magic value
+    }
+
+    // This function is triggered when multiple tokens are transferred to this contract
+    function onERC1155BatchReceived(address operator, address from, uint256[] calldata ids, uint256[] calldata values, bytes calldata data) 
+        external
+        pure
+        override 
+        returns(bytes4) 
+    {
+        return this.onERC1155BatchReceived.selector; // Return the correct magic value
+    }
+
+
+    function setMusicTicketContract(address _musicTicketContract) public {
         musicTicketContract = MusicTicket(_musicTicketContract);
     }
 

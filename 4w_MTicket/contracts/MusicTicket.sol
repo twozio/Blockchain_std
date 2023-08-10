@@ -23,7 +23,9 @@ contract MusicTicket is ERC1155 {
     uint private ticketIndex = 1;
     mapping(uint => TicketInfo) private ticketInfos;
 
-    constructor(address _musicContract) ERC1155("https://dev-internship.s3.ap-northeast-2.amazonaws.com/Music/Ticket.json") {
+    constructor() ERC1155("https://dev-internship.s3.ap-northeast-2.amazonaws.com/Music/Ticket.json") {}
+
+    function setMusicContract(address _musicContract) public {
         musicContract = Music(_musicContract);
     }
 
@@ -92,5 +94,4 @@ contract MusicTicket is ERC1155 {
 
         ticketInfos[ticketId].streamLimit--;
     }
-
 }

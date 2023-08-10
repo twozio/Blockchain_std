@@ -6,13 +6,7 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_musicContract",
-						"type": "address"
-					}
-				],
+				"inputs": [],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -406,6 +400,19 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "_musicContract",
+						"type": "address"
+					}
+				],
+				"name": "setMusicContract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "ticketId",
 						"type": "uint256"
@@ -522,19 +529,19 @@
 	},
 	"sources": {
 		"contracts/Music.sol": {
-			"keccak256": "0x558c08c2dfb2b33068735cb640051c8bf4a1acf3185d309a17af22b97dce620f",
+			"keccak256": "0x646a6e3771f1e1877d0c486b3b0b5b42ac14c687dcb374617a21116bc5dcf235",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://22dad732a8da19d084fab00ae357bc5bcc19955644d598f0141cd69e980eff02",
-				"dweb:/ipfs/QmUvXJrCZwVBNmGng3st7NQe7KKoqcVemHxEMfQKpfKx4D"
+				"bzz-raw://ffc777721c1286869bf0660fe64f305dd79ea16920f01c1dcf91d19dd3ce80d2",
+				"dweb:/ipfs/QmPtN9cTrsdDXougMwU7fdkFzcyu1hebSZnapTzvKjwjF4"
 			]
 		},
 		"contracts/MusicTicket.sol": {
-			"keccak256": "0x75d9d0a916237589cdf7dcf06193744fe5ef7eae908541fc1230ce3e453f119d",
+			"keccak256": "0x8973b43424d77b2140445873e01c62f810305039339a88592adfe3de34ac6ca6",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://06507f98e3c65b84c529243cedf514e940d0a085f6fb0cd8f20710cec6a4dd88",
-				"dweb:/ipfs/QmfYfQoufHQQwNdKL4nfmPokq59GPXxBoT4q9qKYrcKqWe"
+				"bzz-raw://8a013aba57ceca892ad6e3ed38e10ce57272d2f269750e7bc62fef21afb1bc6d",
+				"dweb:/ipfs/QmQi7TPoNQVWvYqxFF861yAZfZPyXGcTm6tP3zvNPnBGm9"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol": {
@@ -567,6 +574,14 @@
 			"urls": [
 				"bzz-raw://e46c80ea068989111d6103e5521223f9ef337e93de76deed8b03f75c6f7b2797",
 				"dweb:/ipfs/QmNoSE6knNfFncdDDLTb3fGR6oSQty1srG96Vsx3E9wQdw"
+			]
+		},
+		"node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Receiver.sol": {
+			"keccak256": "0x3dd5e1a66a56f30302108a1da97d677a42b1daa60e503696b2bcbbf3e4c95bcb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0808de0ae4918c664643c885ca7fa6503e8ef2bd75609dfc85152c0128a3422d",
+				"dweb:/ipfs/QmNrhFC1XgBKuuxfahFeiwi1MCdu3FLNpHj2uStgmf4iJj"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/utils/Address.sol": {

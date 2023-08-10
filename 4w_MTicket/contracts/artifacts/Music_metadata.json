@@ -6,13 +6,7 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_musicTicketContract",
-						"type": "address"
-					}
-				],
+				"inputs": [],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -434,6 +428,84 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "ids",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "values",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "onERC1155BatchReceived",
+				"outputs": [
+					{
+						"internalType": "bytes4",
+						"name": "",
+						"type": "bytes4"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "onERC1155Received",
+				"outputs": [
+					{
+						"internalType": "bytes4",
+						"name": "",
+						"type": "bytes4"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "id",
 						"type": "uint256"
@@ -537,6 +609,19 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "_musicTicketContract",
+						"type": "address"
+					}
+				],
+				"name": "setMusicTicketContract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "ticketId",
 						"type": "uint256"
@@ -612,6 +697,32 @@
 				"isApprovedForAll(address,address)": {
 					"details": "See {IERC1155-isApprovedForAll}."
 				},
+				"onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)": {
+					"details": "Handles the receipt of a multiple ERC1155 token types. This function is called at the end of a `safeBatchTransferFrom` after the balances have been updated. NOTE: To accept the transfer(s), this must return `bytes4(keccak256(\"onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)\"))` (i.e. 0xbc197c81, or its own function selector).",
+					"params": {
+						"data": "Additional data with no specified format",
+						"from": "The address which previously owned the token",
+						"ids": "An array containing ids of each token being transferred (order and length must match values array)",
+						"operator": "The address which initiated the batch transfer (i.e. msg.sender)",
+						"values": "An array containing amounts of each token being transferred (order and length must match ids array)"
+					},
+					"returns": {
+						"_0": "`bytes4(keccak256(\"onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)\"))` if transfer is allowed"
+					}
+				},
+				"onERC1155Received(address,address,uint256,uint256,bytes)": {
+					"details": "Handles the receipt of a single ERC1155 token type. This function is called at the end of a `safeTransferFrom` after the balance has been updated. NOTE: To accept the transfer, this must return `bytes4(keccak256(\"onERC1155Received(address,address,uint256,uint256,bytes)\"))` (i.e. 0xf23a6e61, or its own function selector).",
+					"params": {
+						"data": "Additional data with no specified format",
+						"from": "The address which previously owned the token",
+						"id": "The ID of the token being transferred",
+						"operator": "The address which initiated the transfer (i.e. msg.sender)",
+						"value": "The amount of tokens being transferred"
+					},
+					"returns": {
+						"_0": "`bytes4(keccak256(\"onERC1155Received(address,address,uint256,uint256,bytes)\"))` if transfer is allowed"
+					}
+				},
 				"safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)": {
 					"details": "See {IERC1155-safeBatchTransferFrom}."
 				},
@@ -620,9 +731,6 @@
 				},
 				"setApprovalForAll(address,bool)": {
 					"details": "See {IERC1155-setApprovalForAll}."
-				},
-				"supportsInterface(bytes4)": {
-					"details": "See {IERC165-supportsInterface}."
 				},
 				"uri(uint256)": {
 					"details": "See {IERC1155MetadataURI-uri}. This implementation returns the same URI for *all* token types. It relies on the token type ID substitution mechanism https://eips.ethereum.org/EIPS/eip-1155#metadata[defined in the EIP]. Clients calling this function must replace the `\\{id\\}` substring with the actual token type ID."
@@ -653,19 +761,19 @@
 	},
 	"sources": {
 		"contracts/Music.sol": {
-			"keccak256": "0xceb06755ef9685435e22d71a065ffaa897e1f2c5f695170cdf43d37ec7af8c56",
+			"keccak256": "0xbb8ff0c5fdd7d0683f2c020bfa8220cd8aeb31e61ed55c4f18ece2704682b4be",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://944840cacb2d0ff9a995a2bdeba8f2f602207edd995c8dfb61c19420a27a008e",
-				"dweb:/ipfs/QmPx426F4BeamHpNzsYVpHsCiUd2rtqxY7Tf9AKVkVWhh7"
+				"bzz-raw://45f350e1386f955113c0166d1b55719c1a34f1f20e673e7a206c4b8bf445a981",
+				"dweb:/ipfs/QmTaixzM5bjuAzswz6fFrhLTthGSfRNb1BWXT39FzfsCiK"
 			]
 		},
 		"contracts/MusicTicket.sol": {
-			"keccak256": "0x75d9d0a916237589cdf7dcf06193744fe5ef7eae908541fc1230ce3e453f119d",
+			"keccak256": "0x8973b43424d77b2140445873e01c62f810305039339a88592adfe3de34ac6ca6",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://06507f98e3c65b84c529243cedf514e940d0a085f6fb0cd8f20710cec6a4dd88",
-				"dweb:/ipfs/QmfYfQoufHQQwNdKL4nfmPokq59GPXxBoT4q9qKYrcKqWe"
+				"bzz-raw://8a013aba57ceca892ad6e3ed38e10ce57272d2f269750e7bc62fef21afb1bc6d",
+				"dweb:/ipfs/QmQi7TPoNQVWvYqxFF861yAZfZPyXGcTm6tP3zvNPnBGm9"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol": {
@@ -698,6 +806,14 @@
 			"urls": [
 				"bzz-raw://e46c80ea068989111d6103e5521223f9ef337e93de76deed8b03f75c6f7b2797",
 				"dweb:/ipfs/QmNoSE6knNfFncdDDLTb3fGR6oSQty1srG96Vsx3E9wQdw"
+			]
+		},
+		"node_modules/@openzeppelin/contracts/token/ERC1155/utils/ERC1155Receiver.sol": {
+			"keccak256": "0x3dd5e1a66a56f30302108a1da97d677a42b1daa60e503696b2bcbbf3e4c95bcb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0808de0ae4918c664643c885ca7fa6503e8ef2bd75609dfc85152c0128a3422d",
+				"dweb:/ipfs/QmNrhFC1XgBKuuxfahFeiwi1MCdu3FLNpHj2uStgmf4iJj"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/utils/Address.sol": {
