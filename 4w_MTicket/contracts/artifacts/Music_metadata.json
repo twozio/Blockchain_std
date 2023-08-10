@@ -426,6 +426,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -652,6 +665,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "symbol",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -761,19 +787,19 @@
 	},
 	"sources": {
 		"contracts/Music.sol": {
-			"keccak256": "0xbb8ff0c5fdd7d0683f2c020bfa8220cd8aeb31e61ed55c4f18ece2704682b4be",
+			"keccak256": "0xbf846933bf5cdc7135dcfa574ac68fbbb21850afb544f5fe0c71c0df795852ec",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://45f350e1386f955113c0166d1b55719c1a34f1f20e673e7a206c4b8bf445a981",
-				"dweb:/ipfs/QmTaixzM5bjuAzswz6fFrhLTthGSfRNb1BWXT39FzfsCiK"
+				"bzz-raw://9e4575d3c98b8212f67ed4cf87aaf9167253cbed151e8c12b1032721f53b75e1",
+				"dweb:/ipfs/QmdFJUU8DaxBD2ci8Nb7br59x5s1h43AGFEkjLLBz2TkYW"
 			]
 		},
 		"contracts/MusicTicket.sol": {
-			"keccak256": "0x8973b43424d77b2140445873e01c62f810305039339a88592adfe3de34ac6ca6",
+			"keccak256": "0xa2dcc55c14bc4f0e76a4060197f60c37a49cfbe735113d5c7dc7ff4cf0f3d9ad",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8a013aba57ceca892ad6e3ed38e10ce57272d2f269750e7bc62fef21afb1bc6d",
-				"dweb:/ipfs/QmQi7TPoNQVWvYqxFF861yAZfZPyXGcTm6tP3zvNPnBGm9"
+				"bzz-raw://fdf24ffb1351593ed1faa5e04d72d23b18c2b84b813649271080a6bafae3f676",
+				"dweb:/ipfs/QmToYGem4AYQ7RdRAE8uBqvqHFZ6CFfHHuqa1t5Ce31VM8"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol": {

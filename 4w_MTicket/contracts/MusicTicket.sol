@@ -15,6 +15,9 @@ contract MusicTicket is ERC1155 {
         uint price; // Price of the ticket
     }
 
+    string public name;
+    string public symbol;
+
     modifier onlyMusicContract() {
         require(msg.sender == address(musicContract), "Only the Music contract can call this function");
         _;
@@ -23,16 +26,16 @@ contract MusicTicket is ERC1155 {
     uint private ticketIndex = 1;
     mapping(uint => TicketInfo) private ticketInfos;
 
-    constructor() ERC1155("https://dev-internship.s3.ap-northeast-2.amazonaws.com/Music/Ticket.json") {}
+    constructor() ERC1155("https://dev-internship.s3.ap-northeast-2.amazonaws.com/Music/{id}.json") {
+        name = "GNU MUSIC";
+        symbol = "Guarantable";
+    }
 
     function setMusicContract(address _musicContract) public {
         musicContract = Music(_musicContract);
     }
-
     // Mint a new music ticket
     function mintTicket(uint musicId, uint price, uint amount) public onlyMusicContract {
-        require(msg.sender == address(musicContract), "Only the music can mint a ticket");
-
         uint downloadLimit = 20;
         uint streamLimit = 500;
         uint expiryDate = block.timestamp + 2592000;
@@ -40,7 +43,7 @@ contract MusicTicket is ERC1155 {
         TicketInfo memory newTicket = TicketInfo(musicId, expiryDate, downloadLimit, streamLimit, price);
         ticketInfos[ticketIndex] = newTicket;
 
-        _mint(msg.sender, ticketIndex, amount, "");
+        _mint(msg.sender, ticketIndex+10000, amount, "");
         ticketIndex++;
     }
     // Purchase a music ticket
@@ -50,28 +53,35 @@ contract MusicTicket is ERC1155 {
 
         uint totalCost = 0;
 
-        // Calculate the total cost for all tickets
         for (uint i = 0; i < ticketIds.length; i++) {
             uint ticketId = ticketIds[i];
             uint amount = amounts[i];
+            
             require(ticketInfos[ticketId].price > 0, "Ticket does not exist");
             require(msg.sender != musicContract.ownerOf(ticketInfos[ticketId].musicId), "Owner cannot purchase their own ticket");
 
-            totalCost += ticketInfos[ticketId].price * amount;
+            uint ticketCost = ticketInfos[ticketId].price * amount;
+            totalCost += ticketCost;
         }
 
-        // Ensure enough funds were sent
-        require(msg.value == totalCost, "Incorrect price paid");
+        require(msg.value >= totalCost, "Insufficient funds sent for the tickets");
 
-        // Transfer the tickets and send Ether to the music owners
+        // Deducting costs and transfers
         for (uint i = 0; i < ticketIds.length; i++) {
             uint ticketId = ticketIds[i];
             uint amount = amounts[i];
 
+            uint ticketCost = ticketInfos[ticketId].price * amount;
+
             address musicOwner = musicContract.ownerOf(ticketInfos[ticketId].musicId);
-            payable(musicOwner).transfer(ticketInfos[ticketId].price * amount); // Transfer Ether to the owner of the music
+            payable(musicOwner).transfer(ticketCost); // Transfer Ether for THIS ticket
 
             _safeTransferFrom(address(this), msg.sender, ticketId, amount, ""); // Transfer the tickets
+        }
+
+        // Refund any extra ether sent
+        if (msg.value > totalCost) {
+            payable(msg.sender).transfer(msg.value - totalCost);
         }
     }
     // Get ticket information

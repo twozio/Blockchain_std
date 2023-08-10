@@ -16,11 +16,17 @@ contract Music is ERC1155, ERC1155Receiver {
         uint releaseDate;
     }
 
+    string public name;
+    string public symbol;
+
     uint private musicIndex = 1;
     mapping(uint => MusicInfo) private musicInfos;
     mapping(uint => address) private musicOwners; // Mapping to track music owners
 
-    constructor() ERC1155("https://dev-internship.s3.ap-northeast-2.amazonaws.com/Music/{id}.json") {}
+    constructor() ERC1155("https://dev-internship.s3.ap-northeast-2.amazonaws.com/Music/{id}.json") {
+        name = "GNU MUSIC";
+        symbol = "Guarantable";
+    }
 
     function supportsInterface(bytes4 interfaceId) public view override(ERC1155, ERC1155Receiver) returns (bool) {
         return super.supportsInterface(interfaceId);
