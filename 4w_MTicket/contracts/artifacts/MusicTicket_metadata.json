@@ -179,19 +179,19 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256[]",
-						"name": "ticketIds",
-						"type": "uint256[]"
+						"internalType": "address",
+						"name": "recipient",
+						"type": "address"
 					},
 					{
-						"internalType": "uint256[]",
-						"name": "amounts",
-						"type": "uint256[]"
+						"internalType": "uint256",
+						"name": "ticketId",
+						"type": "uint256"
 					}
 				],
-				"name": "buyTickets",
+				"name": "downloadMusic",
 				"outputs": [],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -202,9 +202,15 @@
 						"type": "uint256"
 					}
 				],
-				"name": "downloadMusic",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"name": "getAvailableTickets",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -256,6 +262,30 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "ticketId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "getTotalCost",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "account",
 						"type": "address"
@@ -279,6 +309,11 @@
 			},
 			{
 				"inputs": [
+					{
+						"internalType": "address",
+						"name": "recipient",
+						"type": "address"
+					},
 					{
 						"internalType": "uint256",
 						"name": "musicId",
@@ -426,6 +461,11 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "recipient",
+						"type": "address"
+					},
+					{
 						"internalType": "uint256",
 						"name": "ticketId",
 						"type": "uint256"
@@ -466,6 +506,101 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "ticketDownloadLimits",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "ticketStreamLimits",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "ticketSupply",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "musicOwner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "recipient",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "ticketId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transferTicket",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -555,19 +690,19 @@
 	},
 	"sources": {
 		"contracts/Music.sol": {
-			"keccak256": "0x646a6e3771f1e1877d0c486b3b0b5b42ac14c687dcb374617a21116bc5dcf235",
+			"keccak256": "0x03f29327955b909c576258c449b8d966f6959218ac62500733866497506841be",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ffc777721c1286869bf0660fe64f305dd79ea16920f01c1dcf91d19dd3ce80d2",
-				"dweb:/ipfs/QmPtN9cTrsdDXougMwU7fdkFzcyu1hebSZnapTzvKjwjF4"
+				"bzz-raw://62ec6b7b317286a1aec1b67a8a58c8be011b7801425dbf245d8506926d16d4d3",
+				"dweb:/ipfs/QmaCZXwvRLXmkHgBzvVmmSuT2Rai7tqHs65diuKqE4kZoW"
 			]
 		},
 		"contracts/MusicTicket.sol": {
-			"keccak256": "0xd403b4b2811a05827dd33a2d3bcc6cddf060a79711a72228da2565cf1628529c",
+			"keccak256": "0x6a87826f7379e2caab43b783c6cbc2c813d9cf09573c397ab70989ed36e349bc",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9bb682bd685bc2f29e2065caa04b8c359e6834545a24a401dec0f88a08ef277a",
-				"dweb:/ipfs/QmQQKdLV1VuATh1LN7hPZjfM6U3MYMsG7LUCpYpHZiAyo6"
+				"bzz-raw://5f76417ac7b074558191e2b5e0b59d7c760766b8ef85809759b3fb38906b4414",
+				"dweb:/ipfs/QmR5eX7GTfitDwyZiueN5dw3uP52Gnk5SSNwNpM7Rybgtg"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol": {

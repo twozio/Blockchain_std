@@ -67,25 +67,47 @@ contract Music is ERC1155, ERC1155Receiver {
     function mintTicket(uint musicId, uint price, uint amount) public {
         require(musicId < musicIndex, "Music does not exist");
         require(musicOwners[musicId] == msg.sender, "Only the music owner can mint tickets");
-        musicTicketContract.mintTicket(musicId, price, amount);
+        musicTicketContract.mintTicket(msg.sender, musicId, price, amount);
     }
 
     function mintMusicAndTickets(string memory singerName, string memory composer, string memory lyricist, uint releaseDate, uint price, uint amount) public {
         mintMusic(singerName, composer, lyricist, releaseDate); // First, mint the music
         uint musicId = musicIndex - 1; // Get the id of the last minted music
-        musicTicketContract.mintTicket(musicId, price, amount); // Then mint tickets for this music
+        musicTicketContract.mintTicket(msg.sender, musicId, price, amount); // Then mint tickets for this music
     }
 
-    function buyTickets(uint[] memory ticketIds, uint[] memory amounts) public payable {
-        musicTicketContract.buyTickets(ticketIds, amounts);
+    function buyMusicTickets(uint[] memory ticketIds, uint[] memory amounts) public payable {
+        uint256 totalEtherRequired = 0;
+
+        // Check conditions and calculate totalEtherRequired in a single loop
+        for (uint i = 0; i < ticketIds.length; i++) {
+            uint ticketCost = musicTicketContract.getTotalCost(ticketIds[i], amounts[i]);
+            uint availableTickets = musicTicketContract.getAvailableTickets(ticketIds[i]);
+            
+            require(availableTickets >= amounts[i], "Not enough tickets available for purchase");
+            
+            totalEtherRequired += ticketCost;
+        }
+
+        require(msg.value >= totalEtherRequired, "Insufficient funds sent");
+
+        // Now make the transfers and ticket transfers
+        for (uint i = 0; i < ticketIds.length; i++) {
+            uint ticketCost = musicTicketContract.getTotalCost(ticketIds[i], amounts[i]);
+            address musicOwner = musicOwners[ticketIds[i]];
+            // This ensures that you're not sending ether to a 0x0 address. It's a safety check.
+            require(musicOwner != address(0), "Invalid owner address");
+            payable(musicOwner).transfer(ticketCost);
+            musicTicketContract.transferTicket(musicOwner, msg.sender, ticketIds[i], amounts[i]);
+        }
     }
 
     function streamMusic(uint ticketId) public {
-        musicTicketContract.streamMusic(ticketId);
+        musicTicketContract.streamMusic(msg.sender, ticketId);
     }
 
     function downloadMusic(uint ticketId) public {
-        musicTicketContract.downloadMusic(ticketId);
+        musicTicketContract.downloadMusic(msg.sender, ticketId);
     }
 
     function getMusicInfo(uint id) public view returns (MusicInfo memory) {

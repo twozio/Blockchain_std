@@ -189,7 +189,7 @@
 						"type": "uint256[]"
 					}
 				],
-				"name": "buyTickets",
+				"name": "buyMusicTickets",
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
@@ -787,19 +787,19 @@
 	},
 	"sources": {
 		"contracts/Music.sol": {
-			"keccak256": "0xbf846933bf5cdc7135dcfa574ac68fbbb21850afb544f5fe0c71c0df795852ec",
+			"keccak256": "0x03f29327955b909c576258c449b8d966f6959218ac62500733866497506841be",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9e4575d3c98b8212f67ed4cf87aaf9167253cbed151e8c12b1032721f53b75e1",
-				"dweb:/ipfs/QmdFJUU8DaxBD2ci8Nb7br59x5s1h43AGFEkjLLBz2TkYW"
+				"bzz-raw://62ec6b7b317286a1aec1b67a8a58c8be011b7801425dbf245d8506926d16d4d3",
+				"dweb:/ipfs/QmaCZXwvRLXmkHgBzvVmmSuT2Rai7tqHs65diuKqE4kZoW"
 			]
 		},
 		"contracts/MusicTicket.sol": {
-			"keccak256": "0xa2dcc55c14bc4f0e76a4060197f60c37a49cfbe735113d5c7dc7ff4cf0f3d9ad",
+			"keccak256": "0x6a87826f7379e2caab43b783c6cbc2c813d9cf09573c397ab70989ed36e349bc",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fdf24ffb1351593ed1faa5e04d72d23b18c2b84b813649271080a6bafae3f676",
-				"dweb:/ipfs/QmToYGem4AYQ7RdRAE8uBqvqHFZ6CFfHHuqa1t5Ce31VM8"
+				"bzz-raw://5f76417ac7b074558191e2b5e0b59d7c760766b8ef85809759b3fb38906b4414",
+				"dweb:/ipfs/QmR5eX7GTfitDwyZiueN5dw3uP52Gnk5SSNwNpM7Rybgtg"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol": {
