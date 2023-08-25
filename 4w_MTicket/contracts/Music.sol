@@ -32,7 +32,7 @@ contract Music is ERC1155, ERC1155Receiver {
         return super.supportsInterface(interfaceId);
     }
 
-    // This function is triggered when a single token is transferred to this contract
+    // This function is triggered when a single token is transferred to this contract 
     function onERC1155Received(address operator, address from, uint256 id, uint256 value, bytes calldata data) 
         external 
         pure
@@ -95,9 +95,13 @@ contract Music is ERC1155, ERC1155Receiver {
         for (uint i = 0; i < ticketIds.length; i++) {
             uint ticketCost = musicTicketContract.getTotalCost(ticketIds[i], amounts[i]);
             address musicOwner = musicOwners[ticketIds[i]];
-            // This ensures that you're not sending ether to a 0x0 address. It's a safety check.
+
+            // Check if the Music contract is approved to manage the tickets
+            require(musicTicketContract.isApprovedForAll(musicOwner, address(this)), "Music contract not approved to manage tickets");
+            
             require(musicOwner != address(0), "Invalid owner address");
             payable(musicOwner).transfer(ticketCost);
+            
             musicTicketContract.transferTicket(musicOwner, msg.sender, ticketIds[i], amounts[i]);
         }
     }

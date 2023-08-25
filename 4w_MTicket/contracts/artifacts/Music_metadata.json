@@ -191,7 +191,7 @@
 				],
 				"name": "buyMusicTickets",
 				"outputs": [],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -536,6 +536,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "paymentToken",
+				"outputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -628,6 +641,19 @@
 					}
 				],
 				"name": "setMusicTicketContract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_tokenAddress",
+						"type": "address"
+					}
+				],
+				"name": "setPaymentToken",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -787,11 +813,11 @@
 	},
 	"sources": {
 		"contracts/Music.sol": {
-			"keccak256": "0x03f29327955b909c576258c449b8d966f6959218ac62500733866497506841be",
+			"keccak256": "0x36bd4cde83536f11f13233c70cf7bd00744dfb0bde036a4b8f3ec59bdb4e56e6",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://62ec6b7b317286a1aec1b67a8a58c8be011b7801425dbf245d8506926d16d4d3",
-				"dweb:/ipfs/QmaCZXwvRLXmkHgBzvVmmSuT2Rai7tqHs65diuKqE4kZoW"
+				"bzz-raw://e6595a0ff41930bb2b7e8c140832da0f559894f3cf6dfd26a0c61e6a1fc7413c",
+				"dweb:/ipfs/QmRKhQugWDyDKbp26uB9goCkXDVrn5uCHVPRguA1dYJRkF"
 			]
 		},
 		"contracts/MusicTicket.sol": {
@@ -840,6 +866,14 @@
 			"urls": [
 				"bzz-raw://0808de0ae4918c664643c885ca7fa6503e8ef2bd75609dfc85152c0128a3422d",
 				"dweb:/ipfs/QmNrhFC1XgBKuuxfahFeiwi1MCdu3FLNpHj2uStgmf4iJj"
+			]
+		},
+		"node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0x287b55befed2961a7eabd7d7b1b2839cbca8a5b80ef8dcbb25ed3d4c2002c305",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://bd39944e8fc06be6dbe2dd1d8449b5336e23c6a7ba3e8e9ae5ae0f37f35283f5",
+				"dweb:/ipfs/QmPV3FGYjVwvKSgAXKUN3r9T9GwniZz83CxBpM7vyj2G53"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/utils/Address.sol": {

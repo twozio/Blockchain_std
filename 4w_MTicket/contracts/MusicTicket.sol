@@ -37,6 +37,10 @@ contract MusicTicket is ERC1155 {
     function setMusicContract(address _musicContract) public {
         musicContract = Music(_musicContract);
     }
+
+    function approveMusicContract() public {
+        setApprovalForAll(address(musicContract), true);
+    }
     // Mint a new music ticket
     function mintTicket(address recipient, uint musicId, uint price, uint amount) public onlyMusicContract {
         uint downloadLimit = 20;
@@ -56,7 +60,9 @@ contract MusicTicket is ERC1155 {
     }
 
     function transferTicket(address musicOwner, address recipient, uint ticketId, uint amount) public onlyMusicContract {
+        require(isApprovedForAll(musicOwner, address(musicContract)), "Music contract is not approved to manage tickets");
         require(ticketSupply[ticketId] >= amount, "Not enough tickets in supply");
+        
         ticketSupply[ticketId] -= amount;
         
         _safeTransferFrom(musicOwner, recipient, ticketId, amount, "");
