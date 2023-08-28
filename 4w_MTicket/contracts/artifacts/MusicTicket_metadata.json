@@ -129,6 +129,13 @@
 				"type": "event"
 			},
 			{
+				"inputs": [],
+				"name": "approveMusicContract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -690,19 +697,19 @@
 	},
 	"sources": {
 		"contracts/Music.sol": {
-			"keccak256": "0xfa4d5004d5451aaad6952525781c68368fe3917467affb57b99e61a30e1609a1",
+			"keccak256": "0xb44e7ad55aa2a03704f6ee16a7670110de76f4b93c3846911aecd0848d08a9b5",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e7c39fe7738a981511e885e8f503968240467142e28cc63925c4212402cbb95f",
-				"dweb:/ipfs/QmWNurEAWhUP92h2aSSRqh3h4jZbd3Tn1an3biyUJayH3J"
+				"bzz-raw://0256f5d72d70e25bbffb38a5e354eb9605ffca90c25e035f476e74ccb2c43c2c",
+				"dweb:/ipfs/Qmcz9T9Ydpsr8sVzPGqBxgePuLLstHm9rBdszQvPuooGx4"
 			]
 		},
 		"contracts/MusicTicket.sol": {
-			"keccak256": "0x6a87826f7379e2caab43b783c6cbc2c813d9cf09573c397ab70989ed36e349bc",
+			"keccak256": "0x99a07ecdc638891f2aaf669eb243fddac7e971f2a1680a93020ce6506d9a6e04",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5f76417ac7b074558191e2b5e0b59d7c760766b8ef85809759b3fb38906b4414",
-				"dweb:/ipfs/QmR5eX7GTfitDwyZiueN5dw3uP52Gnk5SSNwNpM7Rybgtg"
+				"bzz-raw://d025968f8ecd7e695bf67d0846f96f930506fdf2c9596c6a0e2f6a0d207bf348",
+				"dweb:/ipfs/QmcgSLUsvwuxNfy7uibrG3dUcRCCXzxEatTQNqzTsp5Hkj"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol": {
@@ -743,14 +750,6 @@
 			"urls": [
 				"bzz-raw://0808de0ae4918c664643c885ca7fa6503e8ef2bd75609dfc85152c0128a3422d",
 				"dweb:/ipfs/QmNrhFC1XgBKuuxfahFeiwi1MCdu3FLNpHj2uStgmf4iJj"
-			]
-		},
-		"node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-			"keccak256": "0x287b55befed2961a7eabd7d7b1b2839cbca8a5b80ef8dcbb25ed3d4c2002c305",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://bd39944e8fc06be6dbe2dd1d8449b5336e23c6a7ba3e8e9ae5ae0f37f35283f5",
-				"dweb:/ipfs/QmPV3FGYjVwvKSgAXKUN3r9T9GwniZz83CxBpM7vyj2G53"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/utils/Address.sol": {
