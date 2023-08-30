@@ -2,9 +2,10 @@
 pragma solidity ^0.8.0;
 
 import "./Music.sol";
-import "../node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-contract MusicTicket is ERC1155 {
+contract MusicTicket is ERC721URIStorage {
     Music public musicContract; // Reference to the Music contract
 
     struct TicketInfo {
@@ -15,9 +16,6 @@ contract MusicTicket is ERC1155 {
         uint price; // Price of the ticket
     }
 
-    string public name;
-    string public symbol;
-
     modifier onlyMusicContract() {
         require(msg.sender == address(musicContract), "Only the Music contract can call this function");
         _;
@@ -25,14 +23,8 @@ contract MusicTicket is ERC1155 {
 
     uint private ticketIndex = 1;
     mapping(uint => TicketInfo) private ticketInfos;
-    mapping(uint => uint) public ticketSupply;
-    mapping(uint => mapping(address => uint)) public ticketDownloadLimits;
-    mapping(uint => mapping(address => uint)) public ticketStreamLimits;
 
-    constructor() ERC1155("https://dev-internship.s3.ap-northeast-2.amazonaws.com/Ticket/{id}.json") {
-        name = "GNU MUSIC";
-        symbol = "Guarantable";
-    }
+    constructor() ERC721("GNU MUSIC", "Guarantable") {}
 
     function setMusicContract(address _musicContract) public {
         musicContract = Music(_musicContract);
@@ -42,39 +34,30 @@ contract MusicTicket is ERC1155 {
         setApprovalForAll(address(musicContract), true);
     }
     // Mint a new music ticket
-    function mintTicket(address recipient, uint musicId, uint price, uint amount) public onlyMusicContract {
+    function mintTicket(address recipient, uint musicId, uint price) public onlyMusicContract {
         uint downloadLimit = 20;
         uint streamLimit = 500;
         uint expiryDate = block.timestamp + 2592000;
 
-        TicketInfo memory newTicket = TicketInfo(musicId, expiryDate, downloadLimit, streamLimit, price);
-        ticketInfos[ticketIndex] = newTicket;
-        ticketSupply[ticketIndex] = amount;
+        ticketInfos[ticketIndex] = TicketInfo(musicId, expiryDate, downloadLimit, streamLimit, price);
 
-        // Initialize individual limits for the recipient
-        ticketDownloadLimits[ticketIndex][recipient] = downloadLimit;
-        ticketStreamLimits[ticketIndex][recipient] = streamLimit;
+        // Mint the token
+        _mint(recipient, ticketIndex);
+        
+        // Set the token URI
+        _setTokenURI(ticketIndex, "https://dev-internship.s3.ap-northeast-2.amazonaws.com/Ticket/1.json");
 
-        _mint(recipient, ticketIndex, amount, "");
         ticketIndex++;
     }
 
-    function transferTicket(address musicOwner, address recipient, uint ticketId, uint amount) public onlyMusicContract {
-        require(isApprovedForAll(musicOwner, address(musicContract)), "Music contract is not approved to manage tickets");
-        require(ticketSupply[ticketId] >= amount, "Not enough tickets in supply");
+    function transferTicket(address musicOwner, address recipient, uint ticketId) public onlyMusicContract {
+        require(_isApprovedOrOwner(address(musicContract), ticketId), "Music contract is not approved to manage tickets");
         
-        ticketSupply[ticketId] -= amount;
-        
-        _safeTransferFrom(musicOwner, recipient, ticketId, amount, "");
+        _transfer(musicOwner, recipient, ticketId);
     }
 
-    function getTotalCost(uint ticketId, uint amount) public view returns (uint) {
-        uint totalCost = ticketInfos[ticketId].price * amount;
-        return totalCost;
-    }
-
-    function getAvailableTickets(uint ticketId) public view returns (uint) {
-        return ticketSupply[ticketId];
+    function getTotalCost(uint ticketId) public view returns (uint) {
+        return ticketInfos[ticketId].price;
     }
 
     // Get ticket information
@@ -83,18 +66,20 @@ contract MusicTicket is ERC1155 {
     }
 
     function downloadMusic(address recipient, uint ticketId) public onlyMusicContract {
-        require(balanceOf(recipient, ticketId) > 0, "Caller does not own a ticket");
+        require(_exists(ticketId), "Ticket does not exist");
+        require(ownerOf(ticketId) == recipient, "Caller does not own a ticket");
         require(block.timestamp <= ticketInfos[ticketId].expiryDate, "This Ticket is expired!");
-        require(ticketDownloadLimits[ticketId][recipient] > 0, "You don't have any download chance!");
+        require(ticketInfos[ticketId].downloadLimit > 0, "You don't have any download chance!");
 
-        ticketDownloadLimits[ticketId][recipient]--;
+        ticketInfos[ticketId].downloadLimit--;
     }
 
     function streamMusic(address recipient, uint ticketId) public onlyMusicContract {
-        require(balanceOf(recipient, ticketId) > 0, "Caller does not own a ticket");
+        require(_exists(ticketId), "Ticket does not exist");
+        require(ownerOf(ticketId) == recipient, "Caller does not own a ticket");
         require(block.timestamp <= ticketInfos[ticketId].expiryDate, "This Ticket is expired!");
-        require(ticketStreamLimits[ticketId][recipient] > 0, "You don't have any streaming chance!");
+        require(ticketInfos[ticketId].streamLimit > 0, "You don't have any streaming chance!");
 
-        ticketStreamLimits[ticketId][recipient]--;
+        ticketInfos[ticketId].streamLimit--;
     }
 }
