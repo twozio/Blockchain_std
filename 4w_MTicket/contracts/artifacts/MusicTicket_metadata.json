@@ -136,13 +136,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "approveMusicContract",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -252,6 +245,25 @@
 						"type": "uint256"
 					}
 				],
+				"name": "getTicketPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "ticketId",
+						"type": "uint256"
+					}
+				],
 				"name": "getTotalCost",
 				"outputs": [
 					{
@@ -285,6 +297,29 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "ticketId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "approvedAddress",
+						"type": "address"
+					}
+				],
+				"name": "listTicketForSale",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -353,6 +388,19 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "ticketId",
+						"type": "uint256"
+					}
+				],
+				"name": "removeTicketFromSale",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -638,19 +686,19 @@
 	},
 	"sources": {
 		"contracts/Music.sol": {
-			"keccak256": "0x7dce26a6cfd7526764bca212d201507a87c479d526e2ab7bd95058a0cb120a9f",
+			"keccak256": "0xb1e0fb0ac4ff33d5d5e82e24c6da6ccab671701345e67145ee97517b0e9fca20",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6eb6f38aa8127e0fcdaf91ac2c7b9196e7031ca6d84f71f108c58c1d85f98844",
-				"dweb:/ipfs/QmeQ4doZUhW7X5J1H6iQEGHhoxywSQZKs2A8Rn2gzgGynX"
+				"bzz-raw://7b7c8e31857e2af933b440f4b631d6cafe67376cefff5475ca19f479beaad997",
+				"dweb:/ipfs/QmYT9uK4pE1UwbRRmf3Gvuhpm1nQZXkzLqfg3j3GnDmZ94"
 			]
 		},
 		"contracts/MusicTicket.sol": {
-			"keccak256": "0xa8a58a7d57af126cd525dba03d232af6548e4be57726c76c7749ad2edffbb364",
+			"keccak256": "0x459b71de35a71a96f14d4b04dd18445478445c5f0245928bb0bd77c61cf27d89",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9c2ad42fd8c4bbd1bf8ab21c5e8f0f09ae9f922c78c245e6ed11213e11ff9a1c",
-				"dweb:/ipfs/QmRzx1soX7RYEGtzrUPLdWuTz9R6R7TbNgsw6Go65Wdhze"
+				"bzz-raw://d0a5a7fc503821b84bccd003e0fbd67404b6c0bdcbfcc4b7d3ebdf008167e9be",
+				"dweb:/ipfs/QmegqMfmM7Cvywtq8P4m6KFncRunKZQYfrXSuDf63HgaVo"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": {

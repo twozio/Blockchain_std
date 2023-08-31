@@ -23,15 +23,12 @@ contract MusicTicket is ERC721URIStorage {
 
     uint private ticketIndex = 1;
     mapping(uint => TicketInfo) private ticketInfos;
+    mapping(uint => uint) private sellingPrices;
 
     constructor() ERC721("GNU MUSIC", "Guarantable") {}
 
     function setMusicContract(address _musicContract) public {
         musicContract = Music(_musicContract);
-    }
-
-    function approveMusicContract() public {
-        setApprovalForAll(address(musicContract), true);
     }
     // Mint a new music ticket
     function mintTicket(address recipient, uint musicId, uint price) public onlyMusicContract {
@@ -47,13 +44,13 @@ contract MusicTicket is ERC721URIStorage {
         // Set the token URI
         _setTokenURI(ticketIndex, "https://dev-internship.s3.ap-northeast-2.amazonaws.com/Ticket/1.json");
 
+        listTicketForSale(ticketIndex, price, recipient);
+
         ticketIndex++;
     }
 
     function transferTicket(address musicOwner, address recipient, uint ticketId) public onlyMusicContract {
-        require(_isApprovedOrOwner(address(musicContract), ticketId), "Music contract is not approved to manage tickets");
-        
-        _transfer(musicOwner, recipient, ticketId);
+        transferFrom(musicOwner, recipient, ticketId);
     }
 
     function getTotalCost(uint ticketId) public view returns (uint) {
@@ -81,5 +78,26 @@ contract MusicTicket is ERC721URIStorage {
         require(ticketInfos[ticketId].streamLimit > 0, "You don't have any streaming chance!");
 
         ticketInfos[ticketId].streamLimit--;
+    }
+    // List a ticket for sale
+    function listTicketForSale(uint ticketId, uint price, address approvedAddress) public {
+        require(msg.sender == ownerOf(ticketId), "You do not own this ticket");
+        sellingPrices[ticketId] = price;
+        approve(approvedAddress, ticketId);
+    }
+
+    // Remove a ticket from sale
+    function removeTicketFromSale(uint ticketId) public onlyMusicContract {
+        require(_exists(ticketId), "Ticket does not exist");
+    // Remove the approval
+        _approve(address(0), ticketId);
+
+    // Remove the selling price
+        delete sellingPrices[ticketId];
+    }
+
+    // Get the selling price of a ticket
+    function getTicketPrice(uint ticketId) public view returns (uint) {
+        return sellingPrices[ticketId];
     }
 }

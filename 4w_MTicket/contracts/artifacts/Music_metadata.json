@@ -179,13 +179,21 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256[]",
-						"name": "ticketIds",
-						"type": "uint256[]"
-					},
+						"internalType": "uint256",
+						"name": "ticketId",
+						"type": "uint256"
+					}
+				],
+				"name": "buyListedTicket",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
 					{
 						"internalType": "uint256[]",
-						"name": "amounts",
+						"name": "ticketIds",
 						"type": "uint256[]"
 					}
 				],
@@ -377,11 +385,6 @@
 						"internalType": "uint256",
 						"name": "price",
 						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
 					}
 				],
 				"name": "mintMusicAndTickets",
@@ -399,11 +402,6 @@
 					{
 						"internalType": "uint256",
 						"name": "price",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
 						"type": "uint256"
 					}
 				],
@@ -604,6 +602,24 @@
 			{
 				"inputs": [
 					{
+						"internalType": "uint256",
+						"name": "ticketId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					}
+				],
+				"name": "sellTicket",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "address",
 						"name": "operator",
 						"type": "address"
@@ -787,19 +803,43 @@
 	},
 	"sources": {
 		"contracts/Music.sol": {
-			"keccak256": "0xa29ad248e03fdedb2432dc4a70ac0a77b41e1477113706792155e17a5ecadb5f",
+			"keccak256": "0x65ec364267ce2c264d502ebab17d9dea3e79787a7ec522b24f5222c23452af4f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f26939fda5ebf468dcd07bd1c640091828eb308ec8b519a9a8263ae4de419a0a",
-				"dweb:/ipfs/QmWCuEDH7xtw5M9U3L4shEUxrKsVCtiAnrczbBsUwAFZP4"
+				"bzz-raw://d63fdad4a60e03fe39a67be76182a9c81233bd4627a3ca57c8e8329a338e3846",
+				"dweb:/ipfs/QmfCZcGApsWRC24UssV7gRccvcxyTzeyez99PoTsh2yr12"
 			]
 		},
 		"contracts/MusicTicket.sol": {
-			"keccak256": "0xe9d240d01e7e6fa2711ebf6dca5f9b338c2a5ae734b97e36c4723ae8b9dbc437",
+			"keccak256": "0x2ae18d4086377d160abff5760f5330d710d00b6ba951695fd492390926c7af6c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f259f6d721df83e69a4e5e01d6b99f83894c3d255fb36f7cfb48d13fdf33af33",
-				"dweb:/ipfs/QmW9edYwGJxdFEY62HLXuzvbGQL4H6kdoBS2D8HjTrUzaP"
+				"bzz-raw://cd698883fdca5ad3ea3603b94e0fcb78779627bc934f8196bcaba35350e837b8",
+				"dweb:/ipfs/QmS9hPiu3XagYnStPFGxFKyzG2Urrjru4VbqeRf5wAxy5P"
+			]
+		},
+		"node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": {
+			"keccak256": "0xd04b0f06e0666f29cf7cccc82894de541e19bb30a765b107b1e40bb7fe5f7d7a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7b652499d098e88d8d878374616bb58434301061cae2253298b3f374044e0ddb",
+				"dweb:/ipfs/QmbhAzctqo5jrSKU6idHdVyqfmzCcDbNUPvmx4GiXxfA6q"
+			]
+		},
+		"node_modules/@openzeppelin/contracts/interfaces/IERC4906.sol": {
+			"keccak256": "0x2a9dadb806be80dd451821f1f1190eb9aa6f6edae85b185db29d60767cc0c5f4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5c25cac8dbe5bd96320053d23c3dacdb875e629d7c53ac00892eb7aa8500bde6",
+				"dweb:/ipfs/Qmaf2oqbxxdJA9DphAoH4UCb8aXEAVM8fnu6qMxHJ5ta4A"
+			]
+		},
+		"node_modules/@openzeppelin/contracts/interfaces/IERC721.sol": {
+			"keccak256": "0xaf297d12d8d4a57fe01a70f0ef38908f208e3faedc577056d0b728fa2f3ccf0c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://fbfaf37123958822a2720a4ea29651be00edab787540b770f73d3e025d286ff8",
+				"dweb:/ipfs/QmbzgWeTm8hJVUqWrNAwFjshqbYVyeGpQA8D1huzxQdmw6"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/token/ERC1155/ERC1155.sol": {
@@ -864,6 +904,14 @@
 			"urls": [
 				"bzz-raw://6e75cf83beb757b8855791088546b8337e9d4684e169400c20d44a515353b708",
 				"dweb:/ipfs/QmYvPafLfoquiDMEj7CKHtvbgHu7TJNPSVPSCjrtjV8HjV"
+			]
+		},
+		"node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol": {
+			"keccak256": "0x7942989e3525aec1672469e4c65fb33fbd19c785c9cadbcb70fcbe1fe8bfdd37",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6c9f260258c2be0e3b75f8ca285872c4bfa3a8fc97fdc2e62366c78abf22b54f",
+				"dweb:/ipfs/QmTg1DMNwCDj8NVi6i1noqx7cxuRdPP4VyW4fzDkKAKmH2"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {

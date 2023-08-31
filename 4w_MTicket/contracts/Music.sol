@@ -76,28 +76,34 @@ contract Music is ERC1155, ERC1155Receiver {
         musicTicketContract.mintTicket(msg.sender, musicId, price); // Then mint tickets for this music
     }
 
-    function buyMusicTickets(uint[] memory ticketIds) public payable {
-        uint256 totalEtherRequired = 0;
+    function sellTicket(uint ticketId, uint price) public {
+        // Check that the caller owns the ticket they are trying to sell
+        require(musicTicketContract.ownerOf(ticketId) == msg.sender, "You do not own this ticket");
 
-        // Check conditions and calculate totalEtherRequired in a single loop
-        for (uint i = 0; i < ticketIds.length; i++) {
-            uint ticketCost = musicTicketContract.getTotalCost(ticketIds[i]);
+        // Call the listTicketForSale function in the MusicTicket contract
+        musicTicketContract.listTicketForSale(ticketId, price, msg.sender);
+    }
 
-            totalEtherRequired += ticketCost;
-        }
+    function buyListedTicket(uint ticketId) public payable {
+        // Retrieve the listing price of the ticket
+        uint ticketPrice = musicTicketContract.getTicketPrice(ticketId);
+        require(ticketPrice > 0, "Ticket does not exist");
 
-        require(msg.value >= totalEtherRequired, "Insufficient funds sent");
+        // Check that the buyer sent enough ether
+        require(msg.value >= ticketPrice, "Not enough ether sent");
 
-        // Now make the transfers and ticket transfers
-        for (uint i = 0; i < ticketIds.length; i++) {
-            uint ticketCost = musicTicketContract.getTotalCost(ticketIds[i]);
-            address musicOwner = musicOwners[ticketIds[i]];
+        // Check that the contract is approved to transfer the ticket
+        require(musicTicketContract.getApproved(ticketId) == ownerOf(ticketId), "Not approved to transfer this ticket");
 
-            require(musicOwner != address(0), "Invalid owner address");
-            payable(musicOwner).transfer(ticketCost);
+        // Transfer the ether to the seller
+        address seller = musicTicketContract.ownerOf(ticketId);
+        payable(seller).transfer(ticketPrice);
 
-            musicTicketContract.transferTicket(musicOwner, msg.sender, ticketIds[i]);
-        }
+        // Transfer the ticket to the buyer
+        musicTicketContract.transferTicket(seller, msg.sender, ticketId);
+
+        // Remove the ticket from the list of tickets for sale
+        musicTicketContract.removeTicketFromSale(ticketId);
     }
 
     function streamMusic(uint ticketId) public {
