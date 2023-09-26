@@ -9,12 +9,12 @@ contract Copyright is ERC721URIStorage {
     DTicket public Dt;
     address public owner;
 
-    string productNumber = "";
     string uri = "https://your_base_url/product/";          // It will be work like a baseURI.
     mapping(uint => bool) private copyrightAvailable;       // Manage for copyright state.
+    mapping(uint => string) public copyrightProductNumber;           // The copyright product number is stored here.
     mapping(uint => uint[]) public copyrightTickets;        // Copyright link to ticket for management.
 
-    constructor() ERC721("3DStore", productNumber) {
+    constructor() ERC721("3DStore", "3DS") {
         owner = msg.sender;
     }
 
@@ -29,16 +29,16 @@ contract Copyright is ERC721URIStorage {
         uri = _URI;
     }
     // Copyright NFT minting.
-    function mintCopyright(uint tokenId, string memory _productNumber) public {
-        copyrightAvailable[tokenId] = true;
-        productNumber = _productNumber;
+    function mintCopyright(uint tokenId, string memory productNumber, bool available) public {
+        copyrightAvailable[tokenId] = available;
+        copyrightProductNumber[tokenId] = productNumber;
 
         _mint(msg.sender, tokenId);
         _setTokenURI(tokenId, string(abi.encodePacked(uri, tokenId)));
     }
     // Download ticket minting.
     function mintDownloadTicket(uint copyrightId, uint counter, uint price) public {
-        require(msg.sender == ownerOf(copyrightId), "Only Copyright owner can mint the tickets");
+        require(msg.sender == ownerOf(copyrightId), "Only Copyright owner can mint the tickets!");
 
         uint newTicketId = Dt.mintTicket(msg.sender, copyrightId, counter, price);
         // For management.
@@ -48,25 +48,30 @@ contract Copyright is ERC721URIStorage {
     function buyTicket(uint ticketId) public payable {
         uint copyrightId = Dt.getCopyrightId(ticketId);
         // Check the ticket available.
-        require(isAvailable(copyrightId), "The corresponding Copyright NFT is not available");
+        require(isAvailable(copyrightId), "The corresponding Copyright NFT is not available!");
 
         uint ticketPrice = Dt.getTicketPrice(ticketId);
-        require(ticketPrice > 0, "Ticket does not exist");
+        require(ticketPrice > 0, "Ticket does not exist!");
 
-        require(msg.value >= ticketPrice, "Not enough ether sent");
         // payment
+        require(msg.value >= ticketPrice, "Not enough ether sent!");
         address seller = Dt.ownerOf(ticketId);
+        require(msg.sender != seller, "You are a seller. you can't buy yourself!");
         payable(seller).transfer(ticketPrice);
-        // Transfer ticket NFT to customer
+        // Transfer ticket NFT to customer.
         Dt.transferTicket(seller, msg.sender, ticketId);
     }
-
+    // Return the copyright product number.
+    function getCopyrightInfo(uint copyrightId) public view returns (string memory) {
+        return copyrightProductNumber[copyrightId];
+    }
+    // Use the download ticket.
     function downloadTicket(uint ticketId) public {
         Dt.download(msg.sender, ticketId);
     }
     // Change copyright available. You can stop or start the sale.
     function setAvailable(uint copyrightId, bool available) public {
-        require(msg.sender == ownerOf(copyrightId), "Only the Copyright owner can set availability");
+        require(msg.sender == ownerOf(copyrightId), "Only the Copyright owner can set availability!");
         copyrightAvailable[copyrightId] = available;
     }
     // Check the ticket available.

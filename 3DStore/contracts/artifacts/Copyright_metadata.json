@@ -186,6 +186,25 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					}
+				],
+				"name": "copyrightProductNumber",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
@@ -231,6 +250,25 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "copyrightId",
+						"type": "uint256"
+					}
+				],
+				"name": "getCopyrightInfo",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -288,8 +326,13 @@
 					},
 					{
 						"internalType": "string",
-						"name": "_productNumber",
+						"name": "productNumber",
 						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "available",
+						"type": "bool"
 					}
 				],
 				"name": "mintCopyright",
@@ -641,11 +684,11 @@
 	},
 	"sources": {
 		"3DStore/contracts/Copyright.sol": {
-			"keccak256": "0xb596f39b446cd1d1b5ee5d9806ab7c450fe11396ff64524c0ad492ba27bd200c",
+			"keccak256": "0x97eb2e1d0391b9bd279108a1cc7e3cca1fc52d179dac92e0693c66d8309b71e8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://668ff694594b68e5bb0a787858ce882ad9f1732ab49a4bb3007ef60d7ba24b80",
-				"dweb:/ipfs/QmWxdsN2ATvTeoMAdGSCfzQzF6kujT5x4d2VjxfHpbDLuR"
+				"bzz-raw://372e10541dbbcc2ba67b85744499e7a6f4519f8feaf3508fd90f3d5a8ddf0195",
+				"dweb:/ipfs/QmeYeCj86jTsqZ5Wn3STzioatoxNtgvDYB6xARxMQCLNK9"
 			]
 		},
 		"3DStore/contracts/DownloadTicket.sol": {

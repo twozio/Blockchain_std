@@ -15,7 +15,7 @@ contract DTicket is ERC721URIStorage {
     }
     // Only Copyright.sol can call some functions.
     modifier onlyCopyrightContract() {
-        require(msg.sender == address(Cp), "Only the Music contract can call this function");
+        require(msg.sender == address(Cp), "Only the Music contract can call this function!");
         _;
     }
 
@@ -29,7 +29,7 @@ contract DTicket is ERC721URIStorage {
     } 
     // Get the information that copyright's ticket.
     function getCopyrightId(uint ticketId) public view returns (uint) {
-        require(_exists(ticketId), "Ticket does not exist");
+        require(_exists(ticketId), "Ticket does not exist!");
         return ticketInfos[ticketId].copyrightId;
     }
     // Get ticket price.
@@ -52,8 +52,8 @@ contract DTicket is ERC721URIStorage {
     }
     // Ticket use.
     function download(address recipient, uint ticketId) public onlyCopyrightContract {
-        require(_exists(ticketId), "Ticket does not exist");
-        require(ownerOf(ticketId) == recipient, "Caller does not own a ticket");
+        require(_exists(ticketId), "Ticket does not exist!");
+        require(ownerOf(ticketId) == recipient, "Caller does not own a ticket!");
         require(ticketInfos[ticketId].downloadCounter > 0, "You don't have any download chance!");
 
         ticketInfos[ticketId].downloadCounter--;

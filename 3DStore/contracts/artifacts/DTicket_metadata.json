@@ -622,19 +622,19 @@
 	},
 	"sources": {
 		"3DStore/contracts/Copyright.sol": {
-			"keccak256": "0xb596f39b446cd1d1b5ee5d9806ab7c450fe11396ff64524c0ad492ba27bd200c",
+			"keccak256": "0x97eb2e1d0391b9bd279108a1cc7e3cca1fc52d179dac92e0693c66d8309b71e8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://668ff694594b68e5bb0a787858ce882ad9f1732ab49a4bb3007ef60d7ba24b80",
-				"dweb:/ipfs/QmWxdsN2ATvTeoMAdGSCfzQzF6kujT5x4d2VjxfHpbDLuR"
+				"bzz-raw://372e10541dbbcc2ba67b85744499e7a6f4519f8feaf3508fd90f3d5a8ddf0195",
+				"dweb:/ipfs/QmeYeCj86jTsqZ5Wn3STzioatoxNtgvDYB6xARxMQCLNK9"
 			]
 		},
 		"3DStore/contracts/DownloadTicket.sol": {
-			"keccak256": "0x249a65d978b8fdf6b35c6861fb1965e946610f5dd7ea747f8a491b41ab25f9d3",
+			"keccak256": "0xec6d598f754bdfcf1ea9dd45e7f7655f0710d70541b95072f7b5c98c881a382b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://55bc980d0bb4cb4f421b3317b38760e019e242ea187a839576c5ebb2811f9c4b",
-				"dweb:/ipfs/QmRLXUK3MXgfoU8AmaNujPLnBqWNwy7zWBB4Phgeu5vWKf"
+				"bzz-raw://489c6ce118329aebcbd10b5ea52f6a0a64666074235418f4aa274fe243fdf83a",
+				"dweb:/ipfs/QmQdN8mjxE6T4cN9oDTZsfx8sfj2MFLaiq9TcQncYZPoF1"
 			]
 		},
 		"3DStore/node_modules/@openzeppelin/contracts/interfaces/IERC165.sol": {
