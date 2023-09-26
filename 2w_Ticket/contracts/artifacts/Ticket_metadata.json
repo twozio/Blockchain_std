@@ -674,9 +674,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Ticket.sol": "Ticket"
+			"2w_Ticket/contracts/Ticket.sol": "Ticket"
 		},
-		"evmVersion": "london",
+		"evmVersion": "shanghai",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -688,6 +688,14 @@
 		"remappings": []
 	},
 	"sources": {
+		"2w_Ticket/contracts/Ticket.sol": {
+			"keccak256": "0xcc4efab05668127767bb7ea8bc127deb2441a357a1f4e82ed1153b0d49980b59",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://97573bb568f2220e832b40c33473100b0d39d7478600c771cc8bf03d187ec7d2",
+				"dweb:/ipfs/QmaS37FJgCxqtFHkEGYLu4jV3dS9jMuVdokdi7SgC48xS3"
+			]
+		},
 		"@openzeppelin/contracts/access/Ownable.sol": {
 			"keccak256": "0xba43b97fba0d32eb4254f6a5a297b39a19a247082a02d6e69349e071e2946218",
 			"license": "MIT",
@@ -814,14 +822,6 @@
 			"urls": [
 				"bzz-raw://c50fcc459e49a9858b6d8ad5f911295cb7c9ab57567845a250bf0153f84a95c7",
 				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
-			]
-		},
-		"contracts/Ticket.sol": {
-			"keccak256": "0xcc4efab05668127767bb7ea8bc127deb2441a357a1f4e82ed1153b0d49980b59",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://97573bb568f2220e832b40c33473100b0d39d7478600c771cc8bf03d187ec7d2",
-				"dweb:/ipfs/QmaS37FJgCxqtFHkEGYLu4jV3dS9jMuVdokdi7SgC48xS3"
 			]
 		}
 	},

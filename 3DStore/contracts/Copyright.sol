@@ -9,22 +9,15 @@ contract Copyright is ERC721URIStorage {
     DTicket public Dt;
     address public owner;
 
-    string product = "";
+    string productNumber = "";
     string uri = "https://your_base_url/product/";          // It will be work like a baseURI.
-    uint private copyrightIndex = 1;
     mapping(uint => bool) private copyrightAvailable;       // Manage for copyright state.
     mapping(uint => uint[]) public copyrightTickets;        // Copyright link to ticket for management.
 
-    constructor() ERC721("3DStore", product) {
+    constructor() ERC721("3DStore", productNumber) {
         owner = msg.sender;
     }
 
-    /**
-     * @dev If you want to add a product number, you must call this function first before calling the mintCopyright function.
-     */
-    function setProductNumber(string memory _newproduct) public {
-        product = _newproduct;
-    }
     /**
      * @dev After deploy, you need to call this function and set the DownloadTicket.sol address.
      */
@@ -36,15 +29,12 @@ contract Copyright is ERC721URIStorage {
         uri = _URI;
     }
     // Copyright NFT minting.
-    function mintCopyright() public {
-        copyrightAvailable[copyrightIndex] = true;
+    function mintCopyright(uint tokenId, string memory _productNumber) public {
+        copyrightAvailable[tokenId] = true;
+        productNumber = _productNumber;
 
-        _mint(msg.sender, copyrightIndex);
-        _setTokenURI(copyrightIndex, string(abi.encodePacked(uri, copyrightIndex)));
-        // Init to product number.
-        setProductNumber("");
-
-        copyrightIndex++;
+        _mint(msg.sender, tokenId);
+        _setTokenURI(tokenId, string(abi.encodePacked(uri, tokenId)));
     }
     // Download ticket minting.
     function mintDownloadTicket(uint copyrightId, uint counter, uint price) public {
