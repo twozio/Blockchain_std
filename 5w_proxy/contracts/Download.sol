@@ -7,7 +7,7 @@ import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721En
 import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 contract Download is ERC721Enumerable {
-    CopyrightImplementation private Cp;
+    Copyright private Cp;
     mapping(uint256 => string) private _tokenUris;
 
     mapping(uint => DownloadInfo) public downloadInfo;
@@ -28,8 +28,8 @@ contract Download is ERC721Enumerable {
     /**
      * @dev You must deploy the copyright contract first.
      */
-    constructor(address copyrightAddress) ERC721() {
-        Cp = CopyrightImplementation(copyrightAddress);
+    constructor(address copyrightAddress) ERC721("name","symbol") {
+        Cp = Copyright(copyrightAddress);
     }
 
     function modifyTokenUri(uint downloadId, string memory tokenUri) public {
@@ -94,9 +94,5 @@ contract Download is ERC721Enumerable {
     // private function
     function _checkExistsToken(uint256 tokenId) private view {
         require(_exists(tokenId), "Token not exists.");
-    }
-
-    function _exists(uint256 tokenId) internal view virtual returns (bool) {
-        return _ownerOf(tokenId) != address(0);
     }
 }

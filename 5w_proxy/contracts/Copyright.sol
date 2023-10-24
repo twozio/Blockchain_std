@@ -1,12 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "../node_modules/@openzeppelin/contracts/proxy/utils/Initializable.sol";
-import "../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "../node_modules/@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "./Download.sol";
 
-contract CopyrightImplementation is Initializable, ERC721 {
+contract Copyright is ERC721Upgradeable {
     Download private download;
     address private owner;
     mapping(uint256 => string) private _tokenUris;
@@ -20,6 +19,11 @@ contract CopyrightImplementation is Initializable, ERC721 {
         bool sellYn;
     }
 
+    function initialize() public initializer {
+        owner = msg.sender;
+        __ERC721_init("name","symbol");
+    }
+
     modifier onlyOwner() {
         require(msg.sender == owner, "Only the contract owner can call this function");
         _;
@@ -28,10 +32,6 @@ contract CopyrightImplementation is Initializable, ERC721 {
     modifier onlyNftOwner(uint copyrightId) {
         require(msg.sender == ownerOf(copyrightId), "Only the nft owner can call this function");
         _;
-    }
-
-    function initialize() public initializer {
-        owner = msg.sender; // Set the contract deployer as the owner
     }
 
     function getUsageInfo(uint copyrightId) public view returns (UsageInfo memory) {
@@ -96,9 +96,5 @@ contract CopyrightImplementation is Initializable, ERC721 {
     // private function
     function _checkExistsToken(uint256 tokenId) private view {
         require(_exists(tokenId), "Token not exists.");
-    }
-
-    function _exists(uint256 tokenId) internal view virtual returns (bool) {
-        return _ownerOf(tokenId) != address(0);
     }
 }

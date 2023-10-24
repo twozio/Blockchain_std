@@ -1,5 +1,5 @@
-const ProxyCopyright = artifacts.require('ProxyCopyright');
-const Copyright = artifacts.require('Copyright');
+const ProxyCopyright = artifacts.require('ProxyCopyright.sol');
+const Copyright = artifacts.require('Copyright.sol');
 
 module.exports = async function(deployer) {
     // Deploy the Copyright implementation contract first
