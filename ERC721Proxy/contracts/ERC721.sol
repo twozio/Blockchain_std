@@ -460,4 +460,11 @@ contract ERC721 is Initializable, Context, ERC165, IERC721, IERC721Metadata {
     function __unsafe_increaseBalance(address account, uint256 amount) internal {
         _balances[account] += amount;
     }
+
+    /**
+     * @dev This empty reserved space is put in place to allow future versions to add new
+     * variables without shifting down storage in the inheritance chain.
+     * See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps
+     */
+    uint256[44] private __gap;
 }

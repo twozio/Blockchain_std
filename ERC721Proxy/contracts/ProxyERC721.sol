@@ -68,7 +68,7 @@ contract ProxyERC721 is Context {
     /**
      * @dev See {IERC165-supportsInterface}.
      */
-     /*
+    /*
      *
      * @zio This is not using interface!!
      *
@@ -217,8 +217,8 @@ contract ProxyERC721 is Context {
      * - `to` cannot be the zero address.
      * - `tokenId` token must exist and be owned by `from`.
      * - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.
-     
-     /*
+    
+    /*
      * @zio Declared only the necessary internal functions!! 
      */
     
@@ -259,4 +259,5 @@ contract ProxyERC721 is Context {
     function _requireMinted(uint256 tokenId) internal view virtual {
         require(_exists(tokenId), "ERC721: invalid token ID");
     }
+
 }

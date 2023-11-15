@@ -368,7 +368,7 @@
 			}
 		],
 		"devdoc": {
-			"details": "Implementation of https://eips.ethereum.org/EIPS/eip-721[ERC721] Non-Fungible Token Standard, including the Metadata extension, but not including the Enumerable extension, which is available separately as {ERC721Enumerable}.",
+			"details": "This abstract contract provides a fallback function that delegates all calls to another contract using the EVM instruction `delegatecall`. We refer to the second contract as the _implementation_ behind the proxy, and it has to be specified by overriding the  {_implementation} function. Additionally, delegation to the implementation can be triggered manually through the {_fallback} function, or to a different contract through the {_delegate} function. The success and return data of the delegated call will be returned back to the caller of the proxy.",
 			"events": {
 				"Approval(address,address,uint256)": {
 					"details": "Emitted when `owner` enables `approved` to manage the `tokenId` token."
@@ -425,6 +425,11 @@
 					"details": "See {IERC721-transferFrom}."
 				}
 			},
+			"stateVariables": {
+				"__gap": {
+					"details": "This empty reserved space is put in place to allow future versions to add new variables without shifting down storage in the inheritance chain. See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps"
+				}
+			},
 			"version": 1
 		},
 		"userdoc": {
@@ -435,7 +440,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/ERC721.sol": "ERC721"
+			"contracts/ProxyERC721.sol": "ERC721"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -449,12 +454,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/ERC721.sol": {
-			"keccak256": "0x9fb1cf5b2a26bb4ad5e5cfb15cc2100e163109fd0fced2b9ac8774bc13affc60",
+		"contracts/ProxyERC721.sol": {
+			"keccak256": "0x5ef403cfa5223e77e1f1face1a703e00d4d3dc77781b3ad354dc6460615308ef",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f29587ddd98d214aed1f1a8515fc45a383adfb003788dceaf51c8a6e4eea36f2",
-				"dweb:/ipfs/QmVy2RRNzMu5a2AWTVDct1PE7zMe6tYsdw5e18ZM8By1cE"
+				"bzz-raw://29943f72dfb3cb70221e248a44e19cab0b688d1aafff8e541c26650028a19d1b",
+				"dweb:/ipfs/QmSwc6xcksnjQbSixjLJFubAmCwcgUCUH3CyR4faHTxAvU"
 			]
 		},
 		"node_modules/@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol": {
