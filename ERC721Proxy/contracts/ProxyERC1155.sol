@@ -40,16 +40,6 @@ contract ProxyERC1155 is Context {
     }
 
     /**
-     * @dev See {IERC165-supportsInterface}.
-     */
-    function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165, IERC165) returns (bool) {
-        return
-            interfaceId == type(IERC1155).interfaceId ||
-            interfaceId == type(IERC1155MetadataURI).interfaceId ||
-            super.supportsInterface(interfaceId);
-    }
-
-    /**
      * @dev See {IERC1155MetadataURI-uri}.
      *
      * This implementation returns the same URI for *all* token types. It relies
@@ -179,8 +169,6 @@ contract ProxyERC1155 is Context {
         }
         _balances[id][to] += amount;
 
-        emit TransferSingle(operator, from, to, id, amount);
-
         _afterTokenTransfer(operator, from, to, ids, amounts, data);
 
         _doSafeTransferAcceptanceCheck(operator, from, to, id, amount, data);
@@ -221,8 +209,6 @@ contract ProxyERC1155 is Context {
             }
             _balances[id][to] += amount;
         }
-
-        emit TransferBatch(operator, from, to, ids, amounts);
 
         _afterTokenTransfer(operator, from, to, ids, amounts, data);
 
@@ -273,8 +259,6 @@ contract ProxyERC1155 is Context {
         _beforeTokenTransfer(operator, address(0), to, ids, amounts, data);
 
         _balances[id][to] += amount;
-        emit TransferSingle(operator, address(0), to, id, amount);
-
         _afterTokenTransfer(operator, address(0), to, ids, amounts, data);
 
         _doSafeTransferAcceptanceCheck(operator, address(0), to, id, amount, data);
@@ -308,8 +292,6 @@ contract ProxyERC1155 is Context {
             _balances[ids[i]][to] += amounts[i];
         }
 
-        emit TransferBatch(operator, address(0), to, ids, amounts);
-
         _afterTokenTransfer(operator, address(0), to, ids, amounts, data);
 
         _doSafeBatchTransferAcceptanceCheck(operator, address(0), to, ids, amounts, data);
@@ -339,8 +321,6 @@ contract ProxyERC1155 is Context {
         unchecked {
             _balances[id][from] = fromBalance - amount;
         }
-
-        emit TransferSingle(operator, from, address(0), id, amount);
 
         _afterTokenTransfer(operator, from, address(0), ids, amounts, "");
     }
@@ -373,8 +353,6 @@ contract ProxyERC1155 is Context {
             }
         }
 
-        emit TransferBatch(operator, from, address(0), ids, amounts);
-
         _afterTokenTransfer(operator, from, address(0), ids, amounts, "");
     }
 
@@ -386,7 +364,6 @@ contract ProxyERC1155 is Context {
     function _setApprovalForAll(address owner, address operator, bool approved) internal virtual {
         require(owner != operator, "ERC1155: setting approval status for self");
         _operatorApprovals[owner][operator] = approved;
-        emit ApprovalForAll(owner, operator, approved);
     }
 
     /**
